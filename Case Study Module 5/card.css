@@ -1,0 +1,102 @@
+
+
+
+
+@media (max-width: 767.5px) {
+
+    .navbar-nav .nav-link.active,
+    .navbar-nav .nav-link:hover {
+        background-color: #b71c1c;
+        color: #fff !important;
+    }
+
+    .navbar-nav .nav-link {
+        border: 3px solid transparent;
+        margin: 0.8rem 0;
+        display: flex;
+        border-radius: 10px;
+        justify-content: center;
+    }
+}
+
+.icons {
+
+    margin-left: -5%;
+}
+.card{
+    background-color: #EEEEEE;
+}
+
+
+
+
+.page-link {
+    position: relative;
+    display: block;
+    color: #046056 !important;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #046056 !important;
+}
+
+
+.page-link:hover {
+    z-index: 2;
+    color: #fff !important;
+    background-color: #046056;
+    border-color: #024dbc;
+}
+
+
+.page-link:focus {
+    z-index: 3;
+    outline: 0;
+    box-shadow: none;
+}
+.carousel-item {
+    height: 65vh;
+    min-height: 350px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#mainNavbar{
+    padding-left:  50px;
+    padding-top: 20px;
+}
+
+.navbar-dark .navbar-brand{
+    font-family: 'Source Serif Pro', serif;
+
+}
+
+.navbar-nav .nav-link{
+    font-family: 'Source Serif Pro', serif;
+
+}
+
+.display-4{
+    font-family: 'Source Serif Pro', serif;
+}
+
+.lead{
+    font-family: 'Source Serif Pro', serif;
+}
+
+.navbar.scrolled {
+    background: rgb(34, 31, 31);
+    transition: background 500ms;
+}
+
+.font-weight-light{
+    font-family: 'Source Serif Pro', serif;
+}
+
+
+
+
+
+

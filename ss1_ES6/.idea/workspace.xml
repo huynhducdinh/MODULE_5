@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="52232783-3e2b-4974-9bc0-839b5945d4f3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/es6.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../oke.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Case Study Module 5/oke.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Case Study Module 5/oke.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/es6.html" beforeDir="false" afterPath="$PROJECT_DIR$/es6.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +37,11 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/codegym/module 5/Case Study Module 5",
+    "last_opened_file_path": "D:/codegym/module 5/ss1_ES6",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -47,6 +54,7 @@
       <option name="presentableId" value="Default" />
       <updated>1687226028682</updated>
       <workItem from="1687226029871" duration="7423000" />
+      <workItem from="1687270659381" duration="790000" />
     </task>
     <servers />
   </component>
