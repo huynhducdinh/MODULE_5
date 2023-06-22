@@ -114,7 +114,7 @@
                             </li>
                             <li id="nav-menu-item-5007"
                                 class="nav-item menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page">
-                                <a href="/customer.html">
+                                <a href="customer.html"
                                    class="nav-link main-menu-link">KHÁCH HÀNG</a>
                             </li>
                             <li id="nav-menu-item-5008"
@@ -154,60 +154,60 @@
 </nav>
 <div class="container mt-5 mb-5 ">
     <div class="row height d-flex justify-content-center align-items-center" style="z-index: -1">
-        <div class="col-md-6" >
+        <div class="col-md-6">
             <div class="card px-5 py-4">
                 <div style="text-align: center">
-                    <h2 style="color: black">Chỉnh sửa dịch vụ</h2>
+                    <h2 style="color: black">Thêm mới danh sách khách hàng</h2>
                 </div>
                 <form>
-                    <div class="row mt-2  ">
-                        <div class="col-md-6 form-group">
-                            <input type="text" name="" class="form-control" placeholder="Tên dịch vụ" required>
-                        </div>
-                        <div class="col-md-6 form-group mt-3 mt-md-0">
-                            <input type="email" class="form-control" name="" placeholder="Diện tích sử dụng" required>
-                        </div>
+                    <div class="mt-4 ">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Tên khách hàng">
                     </div>
-                    <div class="row mt-2  ">
-                        <div class="col-md-6 form-group">
-                            <input type="text" name="" class="form-control" placeholder="Chi phí thuê" required>
-                        </div>
-                        <div class="col-md-6 form-group mt-3 mt-md-0">
-                            <input type="email" class="form-control" name="" placeholder="Số người tối đa" required>
-                        </div>
-                    </div>
-                    <div class="mt-2 inputs">
+
+                    <div class="mt-2 "><span></span>
                         <select name="need" class="form-control" required="required"
-                                data-error="Please specify your need.">
-                            <option value="" selected disabled>--Loại hình cho thuê--</option>
-                            <option>Year</option>
-                            <option>Month</option>
-                            <option>Day</option>
-                            <option>Hour</option>
+                                data-error="">
+                            <option value="" selected disabled>--Chọn loại khách hàng--</option>
+                            <option>Diamond</option>
+                            <option>Platinium</option>
+                            <option>Gold</option>
+                            <option>Silver</option>
+                            <option>Member</option>
                         </select>
                     </div>
-                    <div class="mt-4 ">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Mô tả các tiện ích khác">
+
+                    <div class="mt-2 ">
+                        <input type="date" class="form-control" id="" name="birthday" placeholder="Ngày tháng năm sinh"
+                               min="1920-01-01">
+                    </div>
+                    <div class="mt-2 ">
+                        <select name="need" class="form-control" required="required"
+                                data-error="Please specify your need.">
+                            <option value="" selected disabled>--Chọn giới tính--</option>
+                            <option>Nam</option>
+                            <option>Nữ</option>
+                        </select>
+                    </div>
+
+                    <div class="row mt-2  ">
+                        <div class="col-md-6 form-group">
+                            <input type="text" name="" class="form-control" placeholder="Số CMND" required>
+                        </div>
+                        <div class="col-md-6 form-group mt-3 mt-md-0">
+                            <input type="email" class="form-control" name="" placeholder="Số điện thoại" required>
+                        </div>
                     </div>
                     <div class="row mt-2  ">
                         <div class="col-md-6 form-group">
-                            <input type="text" name="" class="form-control" placeholder="Tiêu chuẩn phòng" required>
+                            <input type="text" name="" class="form-control" placeholder="Email" required>
                         </div>
                         <div class="col-md-6 form-group mt-3 mt-md-0">
-                            <input type="email" class="form-control" name="" placeholder="Số tầng" required>
-                        </div>
-                    </div>
-                    <div class="row mt-2  ">
-                        <div class="col-md-6 form-group">
-                            <input type="text" name="" class="form-control" placeholder="Diện tích hồ bơi" required>
-                        </div>
-                        <div class="col-md-6 form-group mt-3 mt-md-0">
-                            <input type="email" class="form-control" name="" placeholder="Dịch vụ miễn phí đi kèm" required>
+                            <input type="email" class="form-control" name="" placeholder="Địa chỉ" required>
                         </div>
                     </div>
                     <div class="text-center m-auto">
                         <button type="submit" class=" btn btn-success " >
-                            <b class="text-center">CHỈNH SỬA</b>
+                            <b class="text-center">THÊM MỚI</b>
                         </button>
                     </div>
                 </form>

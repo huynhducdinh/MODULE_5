@@ -20,15 +20,15 @@ function App() {
                 <th>Country</th>
             </tr>
             </thead>
-            {students.map(student =>(
-                <tbody>
-                <tr>
+            <tbody>
+            {students.map((student,index) =>(
+                <tr key={index}>
                     <td>{student.company}</td>
                     <td>{student.contact}</td>
                     <td>{student.country}</td>
                 </tr>
-                </tbody>
             ))}
+            </tbody>
         </table>
 
    </React.Fragment>
