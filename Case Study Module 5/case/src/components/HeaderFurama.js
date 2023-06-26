@@ -80,7 +80,7 @@ export function HeaderFurama() {
                                             className="nav-item  menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page"
                                         >
                                             <a
-                                                href="listHopDong.html"
+                                                href=""
                                                 className="nav-link main-menu-link"
                                             >
                                               ƯU ĐÃI
@@ -91,7 +91,7 @@ export function HeaderFurama() {
                                             id="nav-menu-item-5009"
                                             className="nav-item  menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page"
                                         >
-                                            <Link to="/admin"
+                                            <Link to="/listCustomer"
 
                                                 className="nav-link main-menu-link"
                                             >
