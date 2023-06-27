@@ -11,7 +11,7 @@ export function UpdateBook() {
     const navigate = useNavigate()
     const param = useParams();
     const [book, setBook] = useState();
-    useEffect(()=> {
+    useEffect(() => {
         const findById = async () => {
             const result = await bookService.getById(param.id)
             console.log(result)
@@ -20,33 +20,33 @@ export function UpdateBook() {
         findById()
     }, [])
     // Kết xuất có điều kiện
-    if (!book){
+    if (!book) {
         return null
     }
     return (
         <>
             <Link to="/" className="btn btn-secondary m-3">Back</Link>
             <Formik initialValues={{
-                id:book.id,
-                title:book.title,
+                id: book.id,
+                title: book.title,
                 quantity: book.quantity
             }}
                     validationSchema={Yup.object({
-                        title:Yup.string()
+                        title: Yup.string()
                             .required("Không được để trống"),
-                        quantity:Yup.number()
+                        quantity: Yup.number()
                             .required("Không được để trống")
                     })}
-                    onSubmit={(values,{setSubmitting})=>{
+                    onSubmit={(values, {setSubmitting}) => {
                         setSubmitting(false)
-                        const update = async () =>{
+                        const update = async () => {
                             await bookService.updateBook(values)
                             console.log(update)
                             Swal.fire({
-                                icon:"success",
-                                title:"Chỉnh sửa thành công",
-                                confirmButtonText:"OK",
-                                timer:"2000"
+                                icon: "success",
+                                title: "Chỉnh sửa thành công",
+                                confirmButtonText: "OK",
+                                timer: "2000"
                             });
                             navigate("/")
                         }

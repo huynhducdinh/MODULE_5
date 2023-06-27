@@ -15,15 +15,15 @@ export function BookManagement() {
     }, [])
 
     const deleteBook = async (id) => {
-        await  bookService.deleteBook(id)
+        await bookService.deleteBook(id)
         Swal.fire({
-            icon:"success",
-            title:"Xoá thành công",
-            timer:"2000"
+            icon: "success",
+            title: "Xoá thành công",
+            timer: "2000"
         })
         fetchApi()
     }
-    const deleteBooks = async (id ,title)=>{
+    const deleteBooks = async (id, title) => {
         Swal.fire({
             title: 'Are you sure?',
             text: "Do you want to remove the date name " + " " + title + " " + "?",
@@ -63,9 +63,11 @@ export function BookManagement() {
                         <td className="text-center">{list.title}</td>
                         <td className="text-center">{list.quantity}</td>
                         <td className="text-center">
-                            <a className="btn btn-danger" onClick={() => deleteBooks(`${list.id}`,`${list.title}`)}>Delete</a>
-                            {/*onClick={() => deleteBook(list.id)}*/}
-                            <Link to={`/update/${list.id}`} className="btn btn-warning" style={{marginLeft: "2%"}}>Update</Link>
+                            <a className="btn btn-danger"
+                               onClick={() => deleteBooks(`${list.id}`, `${list.title}`)}>Delete</a>
+                            {/*onClick={() => handleDelete(book.id)}*/}
+                            <Link to={`/update/${list.id}`} className="btn btn-warning"
+                                  style={{marginLeft: "2%"}}>Update</Link>
                         </td>
                     </tr>
                 ))}

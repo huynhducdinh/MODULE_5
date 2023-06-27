@@ -1,11 +1,12 @@
 import {useEffect, useState} from "react";
 import * as todoListService from "../service/ToDoService";
 import {Link} from "react-router-dom";
+
 export function ShowListToDo() {
     const [todo, setTodo] = useState([])
     useEffect(() => {
-        const  fetchApi=async ()=>{
-            const result= await todoListService.findAll();
+        const fetchApi = async () => {
+            const result = await todoListService.findAll();
             setTodo(result);
         }
         fetchApi();

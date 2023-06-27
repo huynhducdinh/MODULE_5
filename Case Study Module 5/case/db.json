@@ -1,0 +1,34 @@
+{
+  "service": [
+    {
+      "id": 1,
+      "name": "PHÒNG SUITE HƯỚNG BIỂN",
+      "acreage": 84.8,
+      "rentalCosts": 100.000,
+      "quantity": 10,
+      "rentalType": "Day"
+    }
+  ],
+  "customer": [
+    {
+      "id": 1,
+      "name": "Huỳnh Đức Định",
+      "type": "Gold",
+      "birthday": "09-09-2002",
+      "gender": 0,
+      "cmnd": 207379736,
+      "phone": "0555779990",
+      "email": "heeyeon@gmail.com",
+      "address": "Quảng Nam"
+    }
+  ],
+  "rentalContract": [
+    {
+      "id": 1,
+      "numberService": "0001",
+      "startDay": "21-1-2023",
+      "endDay": "21-2-2023",
+
+    }
+  ]
+}

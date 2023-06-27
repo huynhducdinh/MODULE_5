@@ -9,15 +9,15 @@ import {Route, Routes} from "react-router-dom";
 import {UpdateBook} from "./components/UpdateBook";
 
 function App() {
-  return (
-    <>
-        <Routes>
-            <Route path="/" element={<BookManagement/>}/>
-            <Route path="/create" element={<CreateBook/>}/>
-            <Route path="/update/:id" element={<UpdateBook/>}/>
-        </Routes>
-    </>
-  );
+    return (
+        <>
+            <Routes>
+                <Route path="/" element={<BookManagement/>}/>
+                <Route path="/create" element={<CreateBook/>}/>
+                <Route path="/update/:id" element={<UpdateBook/>}/>
+            </Routes>
+        </>
+    );
 }
 
 export default App;

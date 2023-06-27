@@ -1,42 +1,42 @@
 import axios from "axios";
 import {useParams} from "react-router-dom";
 
-export const showList = async  () => {
-  try {
-      const result = await axios.get('http://localhost:8080/book')
-      return result.data
-  }catch (e){
-      console.log(e)
-  }
-}
-export const create = async (book) => {
+export const showList = async () => {
     try {
-        const result= await axios.post('http://localhost:8080/book',book)
+        const result = await axios.get('http://localhost:8080/book')
         return result.data
-    }catch (e){
+    } catch (e) {
         console.log(e)
     }
 }
-export  const  deleteBook = async (id)=>{
+export const create = async (book) => {
     try {
-        await axios.delete('http://localhost:8080/book/'+id)
-    }catch (e){
+        const result = await axios.post('http://localhost:8080/book', book)
+        return result.data
+    } catch (e) {
+        console.log(e)
+    }
+}
+export const deleteBook = async (id) => {
+    try {
+        await axios.delete('http://localhost:8080/book/' + id)
+    } catch (e) {
         console.log(e)
     }
 }
 
-export  const getById = async (id)=>{
+export const getById = async (id) => {
     try {
-        const result= await axios.get('http://localhost:8080/book/'+id);
+        const result = await axios.get('http://localhost:8080/book/' + id);
         return result.data;
-    }catch (e){
+    } catch (e) {
         console.log(e)
     }
 }
-export const updateBook = async (value)=>{
+export const updateBook = async (value) => {
     try {
-     await  axios.put('http://localhost:8080/book/'+value.id,value)
-    }catch (e){
+        await axios.put('http://localhost:8080/book/' + value.id, value)
+    } catch (e) {
         console.log(e)
     }
 }

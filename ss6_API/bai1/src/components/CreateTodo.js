@@ -3,7 +3,7 @@ import {ErrorMessage, Field, Form, Formik,} from "formik";
 import * as Yup from 'yup'
 import axios from "axios";
 import {toast} from "react-toastify";
-import  Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 import * as todoListService from "../service/ToDoService";
 
 export function CreateTodo() {
