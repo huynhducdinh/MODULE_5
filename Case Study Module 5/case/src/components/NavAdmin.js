@@ -1,4 +1,5 @@
 import {Link,NavLink} from "react-router-dom";
+import React from "react";
 
 export function NavAdmin() {
     return(
@@ -19,12 +20,13 @@ export function NavAdmin() {
                     <div className="header-nav js-header-nav sticky">
                         <div className="container">
                             <nav className="navbar navbar-expand-lg">
+                                <img src="https://furamavietnam.com/wp-content/uploads/2018/08/logo@2x.png" width={40} style={{marginLeft:"-5%"}}/>
                                 <div className="navbar-collapse">
                                     <ul
                                         id="menu-furama-vi"
                                         className="menu navbar-nav w-100 js-main-menu j"
                                     >
-                                        <li
+                                        <li style={{marginLeft:"8%"}}
                                             id="nav-menu-item-5006"
                                             className="nav-item  menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page"
                                         >

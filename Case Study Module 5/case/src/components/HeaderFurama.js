@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import { Link } from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import React from "react";
 import {Card} from "./Card";
 import {Footer} from "./Footer";
@@ -8,42 +8,40 @@ import {Footer} from "./Footer";
 export function HeaderFurama() {
     return(
         <>
-            <nav
-                className="navbar navbar-expand-lg "
-                data-bs-theme="light"
-                style={{
+            <nav className="navbar navbar-expand-lg " data-bs-theme="light" style={{
                     backgroundColor: "#046056",
                     height: 75,
                     position: "sticky",
                     top: 0,
                     zIndex: 100,
-                    width: "100%"
-                }}
-            >
+                    width: "100%"}}>
+
                 <div className="sticky-wrapper" style={{ marginLeft: "15%" }}>
                     <div className="header-nav js-header-nav sticky">
                         <div className="container">
+
                             <nav className="navbar navbar-expand-lg">
+                                <img src="https://furamavietnam.com/wp-content/uploads/2018/08/logo@2x.png" width={40} style={{marginLeft:"-5%"}}/>
                                 <div className="navbar-collapse">
                                     <ul
                                         id="menu-furama-vi"
-                                        className="menu navbar-nav w-100 js-main-menu j"
-                                    >
-                                        <li
+                                        className="menu navbar-nav w-100 js-main-menu j">
+
+                                        <li style={{marginLeft:"8%"}}
                                             id="nav-menu-item-5006"
                                             className="nav-item  menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page"
                                         >
-                                            <Link to="/" className="nav-link main-menu-link">
+                                            <a to="" className="nav-link main-menu-link">
                                                 GIỚI THIỆU
-                                            </Link>
+                                            </a>
                                         </li>
                                         <li
                                             id="nav-menu-item-5007"
                                             className="nav-item menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page"
                                         >
-                                            <a href="customer.html" className="nav-link main-menu-link">
+                                            <NavLink to="/" className="nav-link main-menu-link">
                                                 LOẠI PHÒNG
-                                            </a>
+                                            </NavLink>
                                         </li>
                                         <li
                                             id="nav-menu-item-5008"
@@ -131,7 +129,7 @@ export function HeaderFurama() {
                                 alt="new"
                             />
                             <div className="carousel-caption d-none d-md-block">
-                                <h3 className="display-4 h3-form" >LOẠI PHÒNG</h3>
+                                <h3 className="display-4 h3-form " >LOẠI PHÒNG</h3>
                             </div>
                         </div>
                     </div>
