@@ -12,7 +12,7 @@ import {CreateRentalContract} from "./components/create/CreateRentalContract";
 import {UpdateService} from "./components/update/UpdateService";
 import {ListContract} from "./components/list/ListContract";
 import {UpdateCustomer} from "./components/update/UpdateCustomer";
-import {FacilityService} from "./components/serive/FacilityService";
+import {ListService} from "./components/list/ListService";
 
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
                 {/*DANH SÁCH HỢP ĐỒNG THUÊ*/}
                 <Route path={'/listRentalContract'} element={<ListContract/>}></Route>
                 {/*DANH SÁCH DỊCH VỤ*/}
-                <Route path={'/listFacilityService'} element={<FacilityService/>}></Route>
+                <Route path={'/listFacilityService'} element={<ListService/>}></Route>
                 {/*THÊM MỚI KHÁCH HÀNG*/}
                 <Route path={'/createCustomer'} element={<CreateCustomer/>}></Route>
                 {/*THÊM MỚI DỊCH VỤ*/}

@@ -1,11 +1,22 @@
 import {Link} from "react-router-dom";
 import {NavAdmin} from "../NavAdmin";
+import {useEffect, useState} from "react";
+import * as customerService from '../serive/CustomerService';
 
-export function ListCustomer(){
-    return(
+export function ListCustomer() {
+    const [customer, setCustomer] = useState([])
+    useEffect(() => {
+        const findAllCustomer = async () => {
+            const result = await customerService.findAll();
+            setCustomer(result)
+        }
+        findAllCustomer()
+    },[])
+    return (
         <>
             <NavAdmin/>
-            <h2 className="text-center mt-2 " style={{ color: "black" }}>
+
+            <h2 className="text-center mt-2 " style={{color: "black"}}>
                 Danh sách khách hàng
             </h2>
             <table className="table  table-hover text-center">
@@ -23,71 +34,46 @@ export function ListCustomer(){
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Huỳnh Đức Định</td>
-                    <td>09-08-2002</td>
-                    <td>Nam</td>
-                    <td>206379735</td>
-                    <td>0999888555</td>
-                    <td>heeyeon0982002@gmail.com</td>
-                    <td>Diamond</td>
-                    <td>
-                        <Link to="/updateCustomer/:id"
 
-                              className="btn btn-info"
-                              style={{ fontSize: "1.2em",color:"white" }}
-                        >
-                            Sửa
-                        </Link>
-                        <a
-                            className="btn btn-danger"
-                            style={{ marginLeft: "5%", width: 70, fontSize: "1.2em",color:"white" }}
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"
-                        >
-                            Xoá
-                        </a>
-                    </td>
-                </tr>
-                </tbody>
-                <tbody>
-                <tr>
-                    <td>2</td>
-                    <td>Huỳnh Đức Định</td>
-                    <td>09-08-2002</td>
-                    <td>Nam</td>
-                    <td>206379735</td>
-                    <td>0999888555</td>
-                    <td>heeyeon0982002@gmail.com</td>
-                    <td>Platinium</td>
-                    <td>
-                        <Link to="/updateCustomer/:id"
+                {customer.map((listCustomer) => (
+                    <tr key={listCustomer.id}>
+                        <td>{listCustomer.id}</td>
+                        <td>{listCustomer.name}</td>
+                        <td>{listCustomer.birthday}</td>
+                        <td>{listCustomer.gender == 0 ? 'Nam':'Nữ' }</td>
+                        <td>{listCustomer.cmnd}</td>
+                        <td>{listCustomer.phone}</td>
+                        <td>{listCustomer.email}</td>
+                        <td>{listCustomer.type}</td>
+                        <td>
+                            <Link to="/updateCustomer/:id"
 
-                            className="btn btn-info"
-                            style={{ fontSize: "1.2em",color:"white" }}
-                        >
-                            Sửa
-                        </Link>
-                        <a
-                            href="case/src/components"
-                            className="btn btn-danger"
-                            style={{ marginLeft: "5%", width: 70, fontSize: "1.2em",color:"white" }}
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"
-                        >
-                            Xoá
-                        </a>
-                    </td>
-                </tr>
+                                  className="btn btn-info"
+                                  style={{fontSize: "1.2em", color: "white"}}
+                            >
+                                Sửa
+                            </Link>
+                            <a
+                                className="btn btn-danger"
+                                style={{marginLeft: "5%", width: 70, fontSize: "1.2em", color: "white"}}
+                                data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                            >
+                                Xoá
+                            </a>
+                        </td>
+                    </tr>
+                ))}
+
                 </tbody>
+
             </table>
             {/*phân trang*/}
             <nav aria-label=" Page navigation example d-flex justify-content-center ">
                 <ul className="pagination d-flex justify-content-center ">
                     <li className="page-item ">
                         <a className="page-link" href="case/src/components#">
-                            <i className="fa-solid fa-arrow-left" />
+                            <i className="fa-solid fa-arrow-left"/>
                         </a>
                     </li>
                     <li className="page-item ">
@@ -122,7 +108,7 @@ export function ListCustomer(){
                     </li>
                     <li className="page-item">
                         <a className="page-link" href="case/src/components#">
-                            <i className="fa-solid fa-arrow-right" />
+                            <i className="fa-solid fa-arrow-right"/>
                         </a>
                     </li>
                 </ul>
@@ -141,7 +127,7 @@ export function ListCustomer(){
                             <h5
                                 className="modal-title"
                                 id="exampleModalLabel"
-                                style={{ color: "#0c4128", fontSize: "1.4em" }}
+                                style={{color: "#0c4128", fontSize: "1.4em"}}
                             >
                                 Xoá
                             </h5>

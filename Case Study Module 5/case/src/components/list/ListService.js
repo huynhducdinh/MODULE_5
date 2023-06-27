@@ -1,17 +1,20 @@
-import {Component} from "react";
+import {Component, useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {NavAdmin} from "../NavAdmin";
+import * as serviceService from '../serive/Service';
 
-export  class FacilityService  extends Component{
-    constructor() {
-        super();
-        this.state={
-            service:[{
-                id:1,name:"PHÒNG SUITE HƯỚNG BIỂN",acreage:84.8,rentalCosts:100.000,quantity:10,rentalType:"Day"
-            }]
+
+
+export  function ListService() {
+    const [service, setService]=useState([]);
+    useEffect(()=>{
+        const findAllService = async () => {
+            const  result= await serviceService.findAll();
+          setService(result)
         }
-    }
-    render() {
+        findAllService()
+    })
+
         return(
             <>
                 <NavAdmin/>
@@ -23,24 +26,28 @@ export  class FacilityService  extends Component{
                     <tr>
                         <th>Id</th>
                         <th>Tên dịch vụ</th>
+                        <th>Loại dịch vụ</th>
+                        {/*<th>Hình ảnh</th>*/}
                         <th>Diện tích sử dụng(m2)</th>
-                        <th>Chi phí thuê</th>
+                        <th>Chi phí thuê(Vnd)</th>
                         <th>Số lượng người tối đa</th>
                         <th>Kiểu thuê </th>
                         <th colSpan={2}>Chức Năng</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {this.state.service.map((listService,index) =>
-                        <tr key={index}>
+                    {service.map((listService) =>
+                        <tr key={listService.id}>
                             <td>{listService.id}</td>
                             <td>{listService.name}</td>
+                            <td>{listService.type}</td>
+                            {/*<td><img style={{height: "35%",width: "35%"}} src={listService.image}/></td>*/}
                             <td>{listService.acreage}</td>
                             <td>{listService.rentalCosts}</td>
                             <td>{listService.quantity}</td>
                             <td>{listService.rentalType}</td>
 
-                            <td>
+                            <td colSpan={2} className="d-flex">
                                 <Link to={`/updateService/${listService.id}`}
 
                                       className="btn btn-info"
@@ -152,6 +159,5 @@ export  class FacilityService  extends Component{
                 </div>
             </>
         )
-    }
 
 }

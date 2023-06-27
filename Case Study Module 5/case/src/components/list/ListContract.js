@@ -1,8 +1,18 @@
 import {Link} from "react-router-dom";
 import {NavAdmin} from "../NavAdmin";
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import {useEffect, useState} from "react";
+import * as contractService from '../serive/ContractSrevice'
+
 
 export  function ListContract() {
+    const [contract, setContract]=useState([])
+    useEffect(()=>{
+        const findAllContract = async () => {
+        const result= await contractService.findAll();
+        setContract(result)
+    }
+    findAllContract()
+    },[])
     return(
         <>
             <NavAdmin/>
@@ -13,7 +23,7 @@ export  function ListContract() {
                 <thead className="table-light">
                 <tr>
                     <th>Id</th>
-                    <th>Tên khách hàng</th>
+                    {/*<th>Tên khách hàng</th>*/}
                     <th>Số hợp đồng</th>
                     <th>Ngày bắt đầu</th>
                     <th>Ngày kết thúc</th>
@@ -23,54 +33,32 @@ export  function ListContract() {
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Huỳnh Đức Định</td>
-                    <td>0001</td>
-                    <td>09-08-2023</td>
-                    <td>10-09-2023</td>
-                    <td>500.000</td>
-                    <td>2.000.000</td>
-                    <td>
-                        <Link to="/"  className="btn btn-info"  style={{ fontSize: "1.2em",color:"white" }}>
-                            Sửa
-                        </Link>
-                        <a
-                            className="btn btn-danger"
-                            style={{ marginLeft: "5%", width: 70, fontSize: "1.2em",color:"white" }}
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"
-                        >
-                            Xoá
-                        </a>
-                    </td>
-                </tr>
+                {contract.map((list)=>(
+                    <tr key={list.id}>
+                        <td>{list.id}</td>
+                        <td>{list.numberService}</td>
+                        <td>{list.startDay}</td>
+                        <td>{list.endDay}</td>
+                        <td>{list.deposit}</td>
+                        <td>{list.totalMoney}</td>
+                        <td>
+                            <Link to="/"  className="btn btn-info"  style={{ fontSize: "1.2em",color:"white" }}>
+                                Sửa
+                            </Link>
+                            <a
+                                className="btn btn-danger"
+                                style={{ marginLeft: "5%", width: 70, fontSize: "1.2em",color:"white" }}
+                                data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                            >
+                                Xoá
+                            </a>
+                        </td>
+                    </tr>
+                ))}
                 </tbody>
-                <tbody>
-                <tr>
-                    <td>2</td>
-                    <td>Huỳnh Đức Định</td>
-                    <td>0002</td>
-                    <td>09-08-2023</td>
-                    <td>10-09-2023</td>
-                    <td>500.000</td>
-                    <td>2.000.000</td>
-                    <td>
-                        <a href="" className="btn btn-info" style={{ fontSize: "1.2em",color:"white" }}>
-                            Sửa
-                        </a>
-                        <a
-                            href=""
-                            className="btn btn-danger"
-                            style={{ marginLeft: "5%", width: 70, fontSize: "1.2em",color:"white" }}
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"
-                        >
-                            Xoá
-                        </a>
-                    </td>
-                </tr>
-                </tbody>
+
+
             </table>
             {/*phân trang*/}
             <nav aria-label=" Page navigation example d-flex justify-content-center ">

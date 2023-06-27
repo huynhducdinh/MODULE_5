@@ -19,14 +19,20 @@ export  function UpdateService() {
                             </div>
                             <form>
                                 <div className="row mt-2  ">
-                                    <div className="col-md-6 form-group">
-                                        <input
-                                            type="text"
-                                            name="name"
+                                    <div className="mt-2 inputs">
+                                        <select
+                                            name="t"
                                             className="form-control"
-                                            placeholder="Tên dịch vụ"
+                                            data-error="Please specify your need."
+                                        >
+                                            <option value="" selected="" disabled="">
+                                                --Loại dịch vụ--
+                                            </option>
+                                            <option>Villa</option>
+                                            <option>House</option>
+                                            <option>Room</option>
 
-                                        />
+                                        </select>
                                     </div>
                                     <div className="col-md-6 form-group mt-3 mt-md-0">
                                         <input
