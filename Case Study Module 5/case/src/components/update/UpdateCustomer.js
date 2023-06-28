@@ -25,7 +25,7 @@ export  function UpdateCustomer() {
                                 placeholder="Tên khách hàng"
                             />
                         </div>
-                        <div className="mt-2 ">
+                        <div className="mt-4 ">
                             <select
                                 name="need"
                                 className="form-control"
@@ -42,7 +42,7 @@ export  function UpdateCustomer() {
                                 <option>Member</option>
                             </select>
                         </div>
-                        <div className="mt-2 ">
+                        <div className="mt-4 ">
                             <input
                                 type="date"
                                 className="form-control"
@@ -52,7 +52,7 @@ export  function UpdateCustomer() {
                                 min="1920-01-01"
                             />
                         </div>
-                        <div className="mt-2 ">
+                        <div className="mt-4 ">
                             <select
                                 name="need"
                                 className="form-control"
@@ -66,7 +66,7 @@ export  function UpdateCustomer() {
                                 <option>Nữ</option>
                             </select>
                         </div>
-                        <div className="row mt-2  ">
+                        <div className="row mt-4  ">
                             <div className="col-md-6 form-group">
                                 <input
                                     type="text"
@@ -86,7 +86,7 @@ export  function UpdateCustomer() {
                                 />
                             </div>
                         </div>
-                        <div className="row mt-2  ">
+                        <div className="row mt-4  ">
                             <div className="col-md-6 form-group">
                                 <input
                                     type="text"

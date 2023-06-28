@@ -25,7 +25,7 @@ export function CreateRentalContract() {
                                         placeholder="Số hợp đồng"
                                     />
                                 </div>
-                                <div className="mt-2 ">
+                                <div className="mt-4 ">
                                     <input
                                         type="text"
                                         className="form-control"
@@ -35,7 +35,7 @@ export function CreateRentalContract() {
                                         min="1920-01-01"
                                     />
                                 </div>
-                                <div className=" mt-2  ">
+                                <div className=" mt-4  ">
                                     <div className=" form-group">
                                         <input
                                             type="text"
@@ -45,7 +45,7 @@ export function CreateRentalContract() {
                                             required=""
                                         />
                                     </div>
-                                    <div className="  mt-2 ">
+                                    <div className="  mt-4 ">
                                         <input
                                             type="number"
                                             className="form-control"
@@ -55,7 +55,7 @@ export function CreateRentalContract() {
                                         />
                                     </div>
                                 </div>
-                                <div className=" mt-2  ">
+                                <div className=" mt-4  ">
                                     <div className=" form-group">
                                         <input
                                             type="number"

@@ -21,7 +21,7 @@ export function HeaderFurama() {
                         <div className="container">
 
                             <nav className="navbar navbar-expand-lg">
-                                <img src="https://furamavietnam.com/wp-content/uploads/2018/08/logo@2x.png" width={40} style={{marginLeft:"-5%"}}/>
+                                <img src="https://furamavietnam.com/wp-content/uploads/2018/08/logo@2x.png" width={35} style={{marginLeft:"-5%"}}/>
                                 <div className="navbar-collapse">
                                     <ul
                                         id="menu-furama-vi"

@@ -1,4 +1,4 @@
-import axios  from "axios";
+import axios, {get} from "axios";
 
  export const findAll = async () => {
     try {
@@ -7,4 +7,28 @@ import axios  from "axios";
     }catch (e) {
         console.log(e)
     }
+}
+export const findAllTypeCustomer =async ()=>{
+     try {
+         const res =await axios.get('http://localhost:8080/typeCustomer')
+         return res.data
+     }catch (e) {
+         console.log(e)
+     }
+}
+export const save =async (customer)=>{
+     try {
+         const res = await  axios.post('http://localhost:8080/customer',customer)
+         return res.data
+     }catch (e) {
+         console.log(e)
+     }
+}
+export const deleteCustoemr = async (id) => {
+     try {
+         await axios.delete('http://localhost:8080/customer/'+id)
+     }catch (e) {
+         console.log(e)
+     }
+
 }

@@ -37,10 +37,7 @@ function App() {
                 {/*CHỈNH SỬA KHÁCH HÀNG*/}
                 <Route path={'/updateCustomer/:id'} element={<UpdateCustomer/>}></Route>
             </Routes>
-
-
         </>
-
     );
 
 }

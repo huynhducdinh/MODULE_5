@@ -2,18 +2,44 @@ import {Component, useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {NavAdmin} from "../NavAdmin";
 import * as serviceService from '../serive/Service';
+import Swal from "sweetalert2";
 
 
 
 export  function ListService() {
     const [service, setService]=useState([]);
+    const findAllService = async () => {
+        const  result= await serviceService.findAll();
+        setService(result);
+    }
     useEffect(()=>{
-        const findAllService = async () => {
-            const  result= await serviceService.findAll();
-          setService(result)
-        }
-        findAllService()
+        findAllService();
     })
+    const deleteServiceId = async (id) => {
+        await serviceService.deleteService(id);
+        Swal.fire({
+            icon:"success",
+            timer:"2000",
+            title:"Xoá thành công"
+        })
+        findAllService();
+    }
+    const deleteServices = (id, name) => {
+      Swal.fire({
+          icon:"warning",
+          title:`Bạn có muốn xoá tên <span>${name}</span> dịch vụ này không ?`,
+          cancelButtonColor:"#948d8d",
+          confirmButtonColor:"#d33",
+          confirmButtonText:"Yes",
+          showCancelButton:true
+      })
+          .then((res)=>{
+              if (res.isConfirmed){
+                  deleteServiceId(id)
+              }
+          })
+    }
+
 
         return(
             <>
@@ -30,8 +56,6 @@ export  function ListService() {
                         {/*<th>Hình ảnh</th>*/}
                         <th>Diện tích sử dụng(m2)</th>
                         <th>Chi phí thuê(Vnd)</th>
-                        <th>Số lượng người tối đa</th>
-                        <th>Kiểu thuê </th>
                         <th colSpan={2}>Chức Năng</th>
                     </tr>
                     </thead>
@@ -44,8 +68,7 @@ export  function ListService() {
                             {/*<td><img style={{height: "35%",width: "35%"}} src={listService.image}/></td>*/}
                             <td>{listService.acreage}</td>
                             <td>{listService.rentalCosts}</td>
-                            <td>{listService.quantity}</td>
-                            <td>{listService.rentalType}</td>
+
 
                             <td colSpan={2} className="d-flex">
                                 <Link to={`/updateService/${listService.id}`}
@@ -55,15 +78,12 @@ export  function ListService() {
                                 >
                                     Sửa
                                 </Link>
-                                <Link
-                                   to={`/${listService.id}`}
+                                <a onClick={()=>deleteServices(listService.id,listService.name)}
                                     className="btn btn-danger"
                                     style={{ marginLeft: "5%", width: 70, fontSize: "1.2em",color:"white" }}
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal"
                                 >
                                     Xoá
-                                </Link>
+                                </a>
                             </td>
                         </tr>
                     )}

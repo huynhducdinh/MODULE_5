@@ -36,9 +36,7 @@ export function BookManagement() {
             if (result.isConfirmed) {
                 Swal.fire(
                     deleteBook(id),
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
+
                 )
             }
         })
@@ -63,8 +61,8 @@ export function BookManagement() {
                         <td className="text-center">{list.title}</td>
                         <td className="text-center">{list.quantity}</td>
                         <td className="text-center">
-                            <a className="btn btn-danger"
-                               onClick={() => deleteBooks(`${list.id}`, `${list.title}`)}>Delete</a>
+                            <Link className="btn btn-danger"
+                               onClick={() => deleteBooks(`${list.id}`, `${list.title}`)}>Delete</Link>
                             {/*onClick={() => handleDelete(book.id)}*/}
                             <Link to={`/update/${list.id}`} className="btn btn-warning"
                                   style={{marginLeft: "2%"}}>Update</Link>

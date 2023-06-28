@@ -9,19 +9,71 @@
       "quantity": 10,
       "rentalType": "Day",
       "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg"
+    },
+    {
+      "id": 2,
+      "type": "Room",
+      "name": "PHÒNG STUDIO SUITE HƯỚNG BIỂN",
+      "acreage": 43.1,
+      "rentalCosts": "5.000.000",
+      "quantity": 10,
+      "rentalType": "Day",
+      "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg"
+    },
+    {
+      "id": 3,
+      "type": "Room",
+      "name": "PHÒNG DELUXE HƯỚNG BIỂN",
+      "acreage": 40.1,
+      "rentalCosts": "5.000.000",
+      "quantity": 10,
+      "rentalType": "Day",
+      "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg"
+    },
+    {
+      "id": 4,
+      "type": "Room",
+      "name": "PHÒNG SUPERIOR HƯỚNG HỒ",
+      "acreage": 40.1,
+      "rentalCosts": "5.000.000",
+      "quantity": 10,
+      "rentalType": "Day",
+      "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg"
     }
   ],
   "customer": [
     {
       "id": 1,
       "name": "Huỳnh Đức Định",
-      "type": "Gold",
+      "typeCustomer": "Gold",
       "birthday": "09-09-2002",
       "gender": 0,
       "cmnd": 207379736,
       "phone": "0555779990",
       "email": "heeyeon@gmail.com",
       "address": "Quảng Nam"
+    },
+    {
+      "name": "Phòng vps",
+      "typeCustomer": "Gold",
+      "birthday": "2023-06-07",
+      "gender": "Nữ",
+      "cmnd": "3213",
+      "phone": "3123",
+      "email": "heeyeon@gmail.com",
+      "address": "Đà ẵng",
+      "id": 2
+    },
+    {
+      "name": "Phòng vps",
+      "typeCustomer": "Platinium",
+      "birthday": "2023-06-08",
+      "gender": "0",
+      "cmnd": "3123",
+      "phone": "312",
+      "email": "heeyeon@gmail.com",
+      "address": "Đà ẵng",
+      "id": 3
     }
   ],
   "rentalContract": [
@@ -32,6 +84,42 @@
       "endDay": "21-02-2023",
       "deposit": "5.000.000",
       "totalMoney": "10.000.000"
+    }
+  ],
+  "typeService": [
+    {
+      "id": 1,
+      "name": "Villa"
+    },
+    {
+      "id": 2,
+      "name": "Room"
+    },
+    {
+      "id": 3,
+      "name": "House"
+    }
+  ],
+  "typeCustomer": [
+    {
+      "id": 1,
+      "name": "Diamond"
+    },
+    {
+      "id": 2,
+      "name": "Platinium"
+    },
+    {
+      "id": 3,
+      "name": "Gold"
+    },
+    {
+      "id": 4,
+      "name": "Silver"
+    },
+    {
+      "id": 5,
+      "name": "Member"
     }
   ]
 }

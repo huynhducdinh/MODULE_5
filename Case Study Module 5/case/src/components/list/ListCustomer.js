@@ -44,7 +44,7 @@ export function ListCustomer() {
                         <td>{listCustomer.cmnd}</td>
                         <td>{listCustomer.phone}</td>
                         <td>{listCustomer.email}</td>
-                        <td>{listCustomer.type}</td>
+                        <td>{listCustomer.typeCustomer}</td>
                         <td>
                             <Link to="/updateCustomer/:id"
 

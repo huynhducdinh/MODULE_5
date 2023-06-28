@@ -1,10 +1,48 @@
 
 import {NavAdmin} from "../NavAdmin";
+import {Field, Form, Formik} from "formik";
+import {useEffect, useState} from "react";
+import * as customerService from '../serive/CustomerService';
+import {useNavigate} from "react-router-dom";
+import Swal from "sweetalert2";
 
 export  function CreateCustomer(){
+    const navigate=useNavigate();
+    const [type, setType] =useState([]);
+    useEffect(()=>{
+        const findAllType = async () => {
+          const  res = await customerService.findAllTypeCustomer();
+          setType(res)
+        }
+        findAllType()
+    })
     return(
 <>
    <NavAdmin/>
+    <Formik initialValues={{
+        name:'',
+        typeCustomer:'',
+        birthday:'',
+        gender:'',
+        cmnd:'',
+        phone:'',
+        email:'',
+        address:''
+    }}
+     onSubmit={(values,{setSubmitting})=>{
+         const create = async () => {
+             setSubmitting(false)
+             await  customerService.save(values);
+             Swal.fire({
+                 icon:"success",
+                 title:"Thêm mới thành công",
+                 timer:"2000"
+             })
+             navigate("/listCustomer")
+
+         }
+         create()
+     }}>
     <div className="container mt-5 mb-5 ">
         <div
             className="row height d-flex justify-content-center align-items-center"
@@ -15,9 +53,9 @@ export  function CreateCustomer(){
                     <div style={{ textAlign: "center" }}>
                         <h2 style={{ color: "black" }}>Thêm mới danh sách khách hàng</h2>
                     </div>
-                    <form>
+                    <Form>
                         <div className="mt-4 ">
-                            <input
+                            <Field
                                 type="text"
                                 className="form-control"
                                 id="name"
@@ -25,26 +63,22 @@ export  function CreateCustomer(){
                                 placeholder="Tên khách hàng"
                             />
                         </div>
-                        <div className="mt-2 ">
+                        <div className="mt-4 ">
                             <span />
-                            <select
-                                name="need"
+                            <Field
+                                name="typeCustomer"
                                 className="form-control"
-                                required="required"
-                                data-error=""
+                                as="select"
                             >
-                                <option value="" selected="" disabled="">
-                                    --Chọn loại khách hàng--
-                                </option>
-                                <option>Diamond</option>
-                                <option>Platinium</option>
-                                <option>Gold</option>
-                                <option>Silver</option>
-                                <option>Member</option>
-                            </select>
+                                {type.map((list)=>(
+                                    <option key={list.id} value={list.name}>
+                                        {list.name}
+                                    </option>
+                                ))}
+                            </Field>
                         </div>
-                        <div className="mt-2 ">
-                            <input
+                        <div className="mt-4 ">
+                            <Field
                                 type="date"
                                 className="form-control"
                                 id=""
@@ -53,57 +87,58 @@ export  function CreateCustomer(){
                                 min="1920-01-01"
                             />
                         </div>
-                        <div className="mt-2 ">
-                            <select
-                                name="need"
+                        <div className="mt-4 ">
+                            <Field
+                                name="gender"
                                 className="form-control"
-                                required="required"
+
                                 data-error="Please specify your need."
+                                as="select"
                             >
-                                <option value="" selected="" disabled="">
+                                <option value="" >
                                     --Chọn giới tính--
                                 </option>
-                                <option>Nam</option>
-                                <option>Nữ</option>
-                            </select>
+                                <option value="0">Nam</option>
+                                <option value="1">Nữ</option>
+                            </Field>
                         </div>
-                        <div className="row mt-2  ">
+                        <div className="row mt-4  ">
                             <div className="col-md-6 form-group">
-                                <input
+                                <Field
                                     type="text"
-                                    name=""
+                                    name="cmnd"
                                     className="form-control"
                                     placeholder="Số CMND"
-                                    required=""
+
                                 />
                             </div>
                             <div className="col-md-6 form-group mt-3 mt-md-0">
-                                <input
-                                    type="email"
+                                <Field
+                                    type="text"
                                     className="form-control"
-                                    name=""
+                                    name="phone"
                                     placeholder="Số điện thoại"
-                                    required=""
+
                                 />
                             </div>
                         </div>
-                        <div className="row mt-2  ">
+                        <div className="row mt-3  ">
                             <div className="col-md-6 form-group">
-                                <input
+                                <Field
                                     type="text"
-                                    name=""
+                                    name="email"
                                     className="form-control"
                                     placeholder="Email"
-                                    required=""
+
                                 />
                             </div>
                             <div className="col-md-6 form-group mt-3 mt-md-0">
-                                <input
-                                    type="email"
+                                <Field
+                                    type="text"
                                     className="form-control"
-                                    name=""
+                                    name="address"
                                     placeholder="Địa chỉ"
-                                    required=""
+
                                 />
                             </div>
                         </div>
@@ -112,11 +147,11 @@ export  function CreateCustomer(){
                                 <b className="text-center">THÊM MỚI</b>
                             </button>
                         </div>
-                    </form>
+                    </Form>
                 </div>
             </div>
         </div>
-    </div>
+    </div></Formik>
 
 </>
     )

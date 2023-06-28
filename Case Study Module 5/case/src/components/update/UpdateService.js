@@ -18,8 +18,8 @@ export  function UpdateService() {
                                 <h2 style={{ color: "black" }}>Chỉnh sửa dịch vụ</h2>
                             </div>
                             <form>
-                                <div className="row mt-2  ">
-                                    <div className="mt-2 inputs">
+
+                                    <div className=" mt-4 inputs">
                                         <select
                                             name="t"
                                             className="form-control"
@@ -34,7 +34,7 @@ export  function UpdateService() {
 
                                         </select>
                                     </div>
-                                    <div className="col-md-6 form-group mt-3 mt-md-0">
+                                    <div className=" mt-4 inputs">
                                         <input
                                             type="text"
                                             className="form-control"
@@ -43,8 +43,8 @@ export  function UpdateService() {
 
                                         />
                                     </div>
-                                </div>
-                                <div className="row mt-2  ">
+
+                                <div className="row mt-4  ">
                                     <div className="col-md-6 form-group">
                                         <input
                                             type="text"
@@ -64,7 +64,7 @@ export  function UpdateService() {
                                         />
                                     </div>
                                 </div>
-                                <div className="mt-2 inputs">
+                                <div className="mt-4 inputs">
                                     <select
                                         name="d"
                                         className="form-control"
@@ -88,7 +88,7 @@ export  function UpdateService() {
                                         placeholder="Mô tả các tiện ích khác"
                                     />
                                 </div>
-                                <div className="row mt-2  ">
+                                <div className="row mt-4  ">
                                     <div className="col-md-6 form-group">
                                         <input
                                             type="text"
@@ -108,7 +108,7 @@ export  function UpdateService() {
                                         />
                                     </div>
                                 </div>
-                                <div className="row mt-2  ">
+                                <div className="row mt-4  ">
                                     <div className="col-md-6 form-group">
                                         <input
                                             type="text"
