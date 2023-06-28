@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import * as Yup from "yup";
 import * as bookService from "../services/BookService";
 import Swal from "sweetalert2";
-import {update, updateBook} from "../services/BookService";
+
 
 
 export function UpdateBook() {
@@ -14,11 +14,10 @@ export function UpdateBook() {
     useEffect(() => {
         const findById = async () => {
             const result = await bookService.getById(param.id)
-            console.log(result)
             setBook(result)
         }
         findById()
-    }, [])
+    }, [param.id])
     // Kết xuất có điều kiện
     if (!book) {
         return null
