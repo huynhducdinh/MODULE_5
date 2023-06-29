@@ -30,5 +30,20 @@ export const deleteCustoemr = async (id) => {
      }catch (e) {
          console.log(e)
      }
-
+}
+export const findById =async (id)=>{
+     try {
+         const res =await axios.get('http://localhost:8080/customer/'+id)
+         return res.data
+     }catch (e) {
+         console.log(e)
+     }
+}
+export  const updateCustomer = async (value) => {
+     try {
+         await axios.put('http://localhost:8080/customer/'+value.id,value)
+     }catch (e) {
+         console.log(e)
+     }
+  
 }

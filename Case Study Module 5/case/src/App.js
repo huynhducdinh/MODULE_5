@@ -19,7 +19,7 @@ function App() {
     return (
         <>
             <Routes>
-                <Route path={'/'} element={ <HeaderFurama/>}></Route>
+                <Route path={'/'} element={<HeaderFurama/>}></Route>
                 {/*DANH SÁCH KHÁCH HÀNG*/}
                 <Route path={'/listCustomer'} element={<ListCustomer/>}></Route>
                 {/*DANH SÁCH HỢP ĐỒNG THUÊ*/}

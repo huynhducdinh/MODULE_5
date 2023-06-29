@@ -2,16 +2,49 @@ import {Link} from "react-router-dom";
 import {NavAdmin} from "../NavAdmin";
 import {useEffect, useState} from "react";
 import * as customerService from '../serive/CustomerService';
+import Swal from "sweetalert2";
 
 export function ListCustomer() {
     const [customer, setCustomer] = useState([])
+    const [typeCustomer, setTypeCustomer] = useState([])
     useEffect(() => {
-        const findAllCustomer = async () => {
-            const result = await customerService.findAll();
-            setCustomer(result)
-        }
         findAllCustomer()
-    },[])
+        typeCustomerList()
+    }, [])
+    const findAllCustomer = async () => {
+        const result = await customerService.findAll();
+        setCustomer(result)
+    }
+    const typeCustomerList = async () => {
+        const res = await customerService.findAllTypeCustomer()
+        setTypeCustomer(res)
+    }
+    const deleteCustomers = async (id) => {
+        await customerService.deleteCustoemr(id)
+        Swal.fire({
+            icon: "success",
+            timer: "2000",
+            title: "Xoá thành công"
+        })
+        findAllCustomer()
+
+    }
+    const deleteCustoemrId = async (id, name) => {
+        Swal.fire({
+            icon: "warning",
+            title: `Bạn có muốn xoá tên <span>${name}</span> ngày không ?`,
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#8f8787"
+        })
+            .then((res) => {
+                if (res.isConfirmed) {
+                    deleteCustomers(id)
+                }
+            })
+
+    }
     return (
         <>
             <NavAdmin/>
@@ -40,13 +73,13 @@ export function ListCustomer() {
                         <td>{listCustomer.id}</td>
                         <td>{listCustomer.name}</td>
                         <td>{listCustomer.birthday}</td>
-                        <td>{listCustomer.gender == 0 ? 'Nam':'Nữ' }</td>
+                        <td>{listCustomer.gender == 0 ? 'Nam' : 'Nữ'}</td>
                         <td>{listCustomer.cmnd}</td>
                         <td>{listCustomer.phone}</td>
                         <td>{listCustomer.email}</td>
-                        <td>{listCustomer.typeCustomer}</td>
+                        <td>{typeCustomer.find(typeCustomer=>typeCustomer.id===listCustomer.typeId)?.nameType}</td>
                         <td>
-                            <Link to="/updateCustomer/:id"
+                            <Link to={`/updateCustomer/${listCustomer.id}`}
 
                                   className="btn btn-info"
                                   style={{fontSize: "1.2em", color: "white"}}
@@ -55,9 +88,9 @@ export function ListCustomer() {
                             </Link>
                             <a
                                 className="btn btn-danger"
+                                onClick={() => deleteCustoemrId(listCustomer.id, listCustomer.name)}
                                 style={{marginLeft: "5%", width: 70, fontSize: "1.2em", color: "white"}}
-                                data-bs-toggle="modal"
-                                data-bs-target="#exampleModal"
+
                             >
                                 Xoá
                             </a>

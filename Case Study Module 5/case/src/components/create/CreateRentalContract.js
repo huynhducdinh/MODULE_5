@@ -21,7 +21,7 @@ export function CreateRentalContract() {
                                         type="text"
                                         className="form-control"
                                         id="name"
-                                        name="name"
+                                        name=""
                                         placeholder="Số hợp đồng"
                                     />
                                 </div>
@@ -32,7 +32,6 @@ export function CreateRentalContract() {
                                         id=""
                                         name="birthday"
                                         placeholder="Ngày bắt đầu"
-                                        min="1920-01-01"
                                     />
                                 </div>
                                 <div className=" mt-4  ">
@@ -42,27 +41,25 @@ export function CreateRentalContract() {
                                             name=""
                                             className="form-control"
                                             placeholder="Ngày kết thúc"
-                                            required=""
+
                                         />
                                     </div>
                                     <div className="  mt-4 ">
                                         <input
-                                            type="number"
+                                            type="text"
                                             className="form-control"
                                             name=""
                                             placeholder="Số tiền cọc trước"
-                                            required=""
                                         />
                                     </div>
                                 </div>
                                 <div className=" mt-4  ">
                                     <div className=" form-group">
                                         <input
-                                            type="number"
+                                            type="text"
                                             name=""
                                             className="form-control"
                                             placeholder="Tổng số tiền thanh toán."
-                                            required=""
                                         />
                                     </div>
                                 </div>

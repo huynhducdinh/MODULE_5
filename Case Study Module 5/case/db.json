@@ -2,7 +2,7 @@
   "service": [
     {
       "id": 1,
-      "type": "Room",
+      "typeServiceId": 1,
       "name": "PHÒNG SUITE HƯỚNG BIỂN",
       "acreage": 84.8,
       "rentalCosts": "5.000.000",
@@ -11,18 +11,8 @@
       "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg"
     },
     {
-      "id": 2,
-      "type": "Room",
-      "name": "PHÒNG STUDIO SUITE HƯỚNG BIỂN",
-      "acreage": 43.1,
-      "rentalCosts": "5.000.000",
-      "quantity": 10,
-      "rentalType": "Day",
-      "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg"
-    },
-    {
       "id": 3,
-      "type": "Room",
+      "typeServiceId": 1,
       "name": "PHÒNG DELUXE HƯỚNG BIỂN",
       "acreage": 40.1,
       "rentalCosts": "5.000.000",
@@ -32,21 +22,21 @@
     },
     {
       "id": 4,
-      "type": "Room",
+      "typeServiceId": 1,
       "name": "PHÒNG SUPERIOR HƯỚNG HỒ",
-      "acreage": 40.1,
-      "rentalCosts": "5.000.000",
-      "quantity": 10,
-      "rentalType": "Day",
+      "acreage": "555",
+      "rentalCosts": "5555",
+      "quantity": "5",
+      "typeRental": "Month",
       "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg"
     }
   ],
   "customer": [
     {
       "id": 1,
-      "name": "Huỳnh Đức Định",
-      "typeCustomer": "Gold",
-      "birthday": "09-09-2002",
+      "name": "Huynh Duc Dninh",
+      "typeId": 1,
+      "birthday": "2023-06-15",
       "gender": 0,
       "cmnd": 207379736,
       "phone": "0555779990",
@@ -54,26 +44,70 @@
       "address": "Quảng Nam"
     },
     {
-      "name": "Phòng vps",
-      "typeCustomer": "Gold",
-      "birthday": "2023-06-07",
-      "gender": "Nữ",
-      "cmnd": "3213",
-      "phone": "3123",
+      "name": "Phan Thi",
+      "typeId": 5,
+      "birthday": "2023-06-08",
+      "gender": "0",
+      "cmnd": "111111111",
+      "phone": "0111111811",
       "email": "heeyeon@gmail.com",
       "address": "Đà ẵng",
       "id": 2
     },
     {
-      "name": "Phòng vps",
-      "typeCustomer": "Platinium",
-      "birthday": "2023-06-08",
+      "name": "Phan Thi",
+      "typeId": 4,
+      "birthday": "2023-06-14",
       "gender": "0",
-      "cmnd": "3123",
-      "phone": "312",
+      "cmnd": "111111111",
+      "phone": "0111111111",
       "email": "heeyeon@gmail.com",
       "address": "Đà ẵng",
       "id": 3
+    },
+    {
+      "name": "Phan Thi",
+      "typeId": 5,
+      "birthday": "2023-06-05",
+      "gender": "0",
+      "cmnd": "111111111",
+      "phone": "0111111111",
+      "email": "heeyeon@gmail.com",
+      "address": "Đà ẵng",
+      "id": 4
+    },
+    {
+      "name": "Phan Thi",
+      "typeId": 4,
+      "birthday": "2023-05-31",
+      "gender": "0",
+      "cmnd": "111122222",
+      "phone": "0111111111",
+      "email": "heeyeon@gmail.com",
+      "address": "Đà ẵng",
+      "id": 5
+    },
+    {
+      "name": "Phan Thi",
+      "typeId": 3,
+      "birthday": "2023-06-17",
+      "gender": "0",
+      "cmnd": "111111111",
+      "phone": "0111111111",
+      "email": "heeyeon@gmail.com",
+      "address": "Đà ẵng",
+      "id": 6
+    },
+    {
+      "name": "Phan Thi",
+      "typeId": 1,
+      "birthday": "2023-06-07",
+      "gender": "0",
+      "cmnd": "111111111",
+      "phone": "0111111111",
+      "email": "heeyeon@gmail.com",
+      "address": "Đà ẵng",
+      "id": 7
     }
   ],
   "rentalContract": [
@@ -89,37 +123,37 @@
   "typeService": [
     {
       "id": 1,
-      "name": "Villa"
+      "nameTypeService": "Villa"
     },
     {
       "id": 2,
-      "name": "Room"
+      "nameTypeService": "Room"
     },
     {
       "id": 3,
-      "name": "House"
+      "nameTypeService": "House"
     }
   ],
   "typeCustomer": [
     {
       "id": 1,
-      "name": "Diamond"
+      "nameType": "Diamond"
     },
     {
       "id": 2,
-      "name": "Platinium"
+      "nameType": "Platinium"
     },
     {
       "id": 3,
-      "name": "Gold"
+      "nameType": "Gold"
     },
     {
       "id": 4,
-      "name": "Silver"
+      "nameType": "Silver"
     },
     {
       "id": 5,
-      "name": "Member"
+      "nameType": "Member"
     }
   ]
 }

@@ -8,20 +8,21 @@ import * as Yup from 'yup';
 
 export function CreateService() {
     const navigate = useNavigate();
-    const [type, setType]=useState([]);
-    useEffect( () => {
-        const findAllType = async () => {
-        const res = await serviceService.findAllType();
-        setType(res)
-        }
-        findAllType()
-    },[])
+    const [type, setType]=useState('Villa');
+    // useEffect( () => {
+    //     const findAllType = async () => {
+    //     const res = await serviceService.findAllType();
+    //     setType(res)
+    //     }
+    //     findAllType()
+    //
+    // })
 
     return (
         <>
             <NavAdmin/>
             <Formik initialValues={{
-                type: '',
+                type: 'Villa',
                 name: '',
                 acreage: '',
                 rentalCosts: '',
@@ -38,15 +39,33 @@ export function CreateService() {
                        type:Yup.string()
                            .required('Không được để trống'),
                        name:Yup.string()
-                           .required('Không được để trống'),
+                           .required('Không được để trống')
+                           .matches(/^[A-Z][a-z]*(\s[A-Z][a-z]*)+$/,'Không được là số'),
                        acreage:Yup.number()
-                           .required('Không được để trống'),
+                           .required('Không được để trống')
+                           .min(0,'Lớn hơn 0'),
                        rentalCosts:Yup.number()
                            .required('Không được để trống'),
                        maximumNumberPeople:Yup.number()
-                           .required('Không được để trống'),
-                       typeRental:Yup.string()
                            .required('Không được để trống')
+                       .min(0,'Lớn hơn 0'),
+                       typeRental:Yup.string()
+                           .required('Không được để trống'),
+                       descriptionOtherUtilities:Yup.string()
+                           .required('Không được để trống'),
+                       roomStandard:Yup.string()
+                           .required('Không được để trống'),
+                       numberFloors:Yup.number()
+                           .required('Không được để trống')
+                           .min(0,'Lớn hơn 0'),
+                       poolArea:Yup.number()
+                           .required('Không được để trống')
+                           .min(0,'Lớn hơn 0'),
+                       freeServiceIncluded:Yup.string()
+                           .required('Không được để trống'),
+                       image:Yup.string()
+                           .required('Không được để trống')
+
                    })}
                     onSubmit={ (values, {setSubmitting}) => {
                         const create = async () => {
@@ -66,7 +85,6 @@ export function CreateService() {
                 <div className="container mt-5 mb-5 ">
                     <div
                         className="row height d-flex justify-content-center align-items-center"
-
                     >
                         <div className="col-md-6">
                             <div className="card px-5 py-4">
@@ -76,14 +94,17 @@ export function CreateService() {
                                 <Form>
                                     <div className=" mt-4 inputs">
                                         <Field
+                                            onClick={(event)=>setType(event.target.value)}
                                             as="select"
                                             name="type"
                                             className="form-control"
-                                            data-error="Please specify your need."
                                         >
-                                            {type.map((listType)=>(
-                                                <option key={listType.id} value={listType.name}>{listType.name}</option>
-                                            ))}
+                                            {/*{type.map((listType)=>(*/}
+                                            {/*    <option key={listType.id} value={listType.name}>{listType.name}</option>*/}
+                                            {/*))}*/}
+                                            <option value="Villa">Villa</option>
+                                            <option value="House">House</option>
+                                            <option value="Room">Room</option>
                                         </Field>
                                         <ErrorMessage name="type" component="span" className="error-r"/>
                                     </div>
@@ -99,8 +120,9 @@ export function CreateService() {
                                     </div>
                                     <div className=" mt-4 inputs">
                                         <Field
-                                            type="text"
+                                            type="number"
                                             className="form-control"
+                                            min="0"
                                             name="acreage"
                                             placeholder="Diện tích sử dụng"
                                         />
@@ -129,7 +151,7 @@ export function CreateService() {
 
                                         </div>
                                     </div>
-                                    <div className="mt-4 inputs">
+                                    <div className="mt-2 inputs">
                                         <Field
                                             name="typeRental"
                                             className="form-control"
@@ -146,63 +168,83 @@ export function CreateService() {
                                         <ErrorMessage name="typeRental" component="span" className="error-r"/>
 
                                     </div>
-                                    <div className="mt-4 ">
-                                        <Field
-                                            type="text"
-                                            className="form-control"
-
-                                            name="descriptionOtherUtilities"
-                                            placeholder="Mô tả các tiện ích khác(Villa,House)"
-                                        />
-                                    </div>
-                                    <div className="row mt-4  ">
-                                        <div className="col-md-6 form-group">
-                                            <Field
-                                                type="text"
-                                                name="roomStandard"
-                                                className="form-control"
-                                                placeholder="Tiêu chuẩn phòng(Villa,House)"
-
-                                            />
-                                        </div>
-                                        <div className="col-md-6 form-group mt-3 mt-md-0">
+                                    {type !== 'Room' ?
+                                        <div className="mt-4 ">
                                             <Field
                                                 type="text"
                                                 className="form-control"
-                                                name="numberFloors"
-                                                placeholder="Số tầng(Villa,House)"
 
+                                                name="descriptionOtherUtilities"
+                                                placeholder="Mô tả các tiện ích khác(Villa,House)"
                                             />
+                                            <ErrorMessage name="descriptionOtherUtilities" component="span" className="error-r"/>
                                         </div>
+                                        : ''
+                                    }
+                                    <div className="row mt-4 ">
+                                        {type !== 'Room' ?
+                                            <div className="col-md-6 form-group">
+                                                <Field
+                                                    type="text"
+                                                    name="roomStandard"
+                                                    className="form-control"
+                                                    placeholder="Tiêu chuẩn phòng(Villa,House)"
+                                                />
+                                                <ErrorMessage name="roomStandard" component="span" className="error-r"/>
+                                            </div>
+                                            :''
+                                        }
+                                        {type !=='Room' ?
+                                            <div className="col-md-6 form-group mt-3 mt-md-0">
+                                                <Field
+                                                    type="number"
+                                                    className="form-control"
+                                                    name="numberFloors"
+                                                    placeholder="Số tầng(Villa,House)"
+                                                />
+                                                <ErrorMessage name="numberFloors" component="span" className="error-r"/>
+
+                                            </div>
+                                            :''
+                                        }
                                     </div>
-                                    <div className="row mt-4  ">
-                                        <div className="col-md-6 form-group">
-                                            <Field
-                                                type="text"
-                                                name="poolArea"
-                                                className="form-control"
-                                                placeholder="Diện tích hồ bơi(Villa)"
+                                    <div className="row mt-2">
+                                        {type ==='Villa' ?
+                                            <div className="col-md-12 form-group">
+                                                <Field
+                                                    type="text"
+                                                    name="poolArea"
+                                                    className="form-control"
+                                                    placeholder="Diện tích hồ bơi"
+                                                />
+                                                <ErrorMessage name="poolArea" component="span" className="error-r"/>
 
-                                            />
-                                        </div>
-                                        <div className="col-md-6 form-group mt-3 mt-md-0">
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                name="freeServiceIncluded"
-                                                placeholder="Dịch vụ miễn phí đi kèm(Room)"
+                                            </div>
+                                            :''
+                                        }
+                                        {type === 'Room' ?
+                                            <div className="col-md-12 form-group mt-2 mt-md-0">
+                                                <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    name="freeServiceIncluded"
+                                                    placeholder="Dịch vụ miễn phí đi kèm"
+                                                />
+                                                <ErrorMessage name="freeServiceIncluded" component="span" className="error-r"/>
+                                            </div>
+                                            : ''
+                                        }
 
-                                            />
-                                        </div>
                                     </div>
-                                    <div className=" mt-4 inputs">
+                                    <div className=" mt-2 inputs">
                                         <Field
                                             type="text"
                                             className="form-control"
                                             name="image"
                                             placeholder="Link Hình ảnh"
-
                                         />
+                                        <ErrorMessage name="image" component="span" className="error-r"/>
+
                                     </div>
                                     <div className="text-center m-auto mt-4">
                                         <button type="submit" className=" btn btn-success ">

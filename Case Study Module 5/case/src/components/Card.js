@@ -1,17 +1,44 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import {useEffect, useState} from "react";
-import * as service from '../components/serive/Service'
+import * as service from '../components/serive/Service';
+import Swal from "sweetalert2";
+import {Link} from "react-router-dom";
 
 export function Card() {
     const [card, setCard] = useState([])
     useEffect(() => {
-        const findAllCard = async () => {
-            const result = await service.findAll();
-            setCard(result)
-        }
         findAllCard()
     },[])
+    const findAllCard = async () => {
+        const result = await service.findAll();
+        setCard(result)
+    }
+    const deleteService =async (id) => {
+        await service.deleteService(id)
+        Swal.fire({
+            icon:"success",
+            title:"Xoá thành công",
+            timer:"2000"
+        })
+        findAllCard()
+    }
+    const deleteCard = async (id, name) => {
+        Swal.fire({
+            icon:"warning",
+            title:`Bạn có muốn xoá cái tên <span>${name}</span> dịch vụ này không ?`,
+            showCancelButton:true,
+            confirmButtonColor:"#d33",
+            confirmButtonText:"Yes",
+            cancelButtonColor:"#817878",
+        })
+            .then((res)=>{
+                if (res.isConfirmed){
+                    deleteService(id)
+                }
+            })
+
+    }
     return (
         <>
             <div className="container bg-white">
@@ -33,17 +60,17 @@ export function Card() {
                                 </div>
                                 <div className="d-flex justify-content-center"
                                      style={{marginTop: "1%", marginBottom: "2%", borderRadius: "30px"}}>
-                                    <a href="" className="btn"
+                                    <Link to={`/updateService/${list.id}`} className="btn"
                                        style={{
                                            backgroundColor: "#046056",
                                            borderTop: "#046056",
                                            color: "white",
                                            marginLeft: "-5%",
                                            width: "100px"
-                                       }}>Sửa</a>
-                                    <a href="" className="btn btn-danger"
-                                       style={{marginLeft: "5%", width: "100px"}}
-                                       data-bs-toggle="modal" data-bs-target="#exampleModal">Xoá</a>
+                                       }}>Sửa</Link>
+                                    <a onClick={()=>deleteCard(list.id,list.name)} className="btn btn-danger"
+                                       style={{marginLeft: "5%", width: "100px",color:"white"}}
+                                      >Xoá</a>
                                 </div>
                             </div>
                         </div>
