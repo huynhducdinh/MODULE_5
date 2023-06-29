@@ -27,7 +27,7 @@ export function HeaderFurama() {
                                         id="menu-furama-vi"
                                         className="menu navbar-nav w-100 js-main-menu j">
 
-                                        <li style={{marginLeft:"8%"}}
+                                        <li style={{marginLeft:"7%"}}
                                             id="nav-menu-item-5006"
                                             className="nav-item  menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page"
                                         >
@@ -93,7 +93,7 @@ export function HeaderFurama() {
 
                                                 className="nav-link main-menu-link"
                                             >
-                                               ADMIN
+                                              QUẢN LÍ
                                             </Link>
                                         </li>
 

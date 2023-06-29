@@ -1,11 +1,18 @@
 import axios, {get} from "axios";
 
- export const findAll = async () => {
+ export const findAll = async (value,currentPage) => {
     try {
-        const result= await axios.get('http://localhost:8080/customer')
+            const result= await axios.get(`http://localhost:8080/customer/?_page=${currentPage}&_limit=6&_sort=id&_order=desc`)
         return result.data
     }catch (e) {
         console.log(e)
+    }
+}
+export const getTotalPages = async() =>{
+    try {
+        return (await axios.get(`http://localhost:8080/customer`)).data
+    } catch (error) {
+        console.log(error)
     }
 }
 export const findAllTypeCustomer =async ()=>{

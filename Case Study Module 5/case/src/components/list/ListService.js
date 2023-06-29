@@ -75,6 +75,7 @@ export function ListService() {
                         <td>{listService.id}</td>
                         <td>{listService.name}</td>
                         <td>{typeService.find(typeService=>typeService.id===listService.typeServiceId)?.nameTypeService}</td>
+                        {/*<td>{listService.typeServiceId}</td>*/}
 
                         {/*<td><img style={{height: "35%",width: "35%"}} src={listService.image}/></td>*/}
                         <td>{listService.acreage}</td>

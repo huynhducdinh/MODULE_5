@@ -8,21 +8,22 @@ import * as Yup from 'yup';
 
 export function CreateService() {
     const navigate = useNavigate();
-    const [type, setType]=useState('Villa');
-    // useEffect( () => {
-    //     const findAllType = async () => {
-    //     const res = await serviceService.findAllType();
-    //     setType(res)
-    //     }
-    //     findAllType()
-    //
-    // })
+    const [type, setType] = useState([]);
+    useEffect(() => {
+        const findAllType = async () => {
+            const res = await serviceService.findAllType();
+            console.log(res)
+            setType(res)
+        }
+        findAllType()
+
+    }, [])
 
     return (
         <>
             <NavAdmin/>
             <Formik initialValues={{
-                type: 'Villa',
+                typeServiceId: 1,
                 name: '',
                 acreage: '',
                 rentalCosts: '',
@@ -33,52 +34,53 @@ export function CreateService() {
                 numberFloors: '',
                 poolArea: '',
                 freeServiceIncluded: '',
-                image:''
+                image: ''
             }}
-                   validationSchema={Yup.object({
-                       type:Yup.string()
-                           .required('Không được để trống'),
-                       name:Yup.string()
-                           .required('Không được để trống')
-                           .matches(/^[A-Z][a-z]*(\s[A-Z][a-z]*)+$/,'Không được là số'),
-                       acreage:Yup.number()
-                           .required('Không được để trống')
-                           .min(0,'Lớn hơn 0'),
-                       rentalCosts:Yup.number()
-                           .required('Không được để trống'),
-                       maximumNumberPeople:Yup.number()
-                           .required('Không được để trống')
-                       .min(0,'Lớn hơn 0'),
-                       typeRental:Yup.string()
-                           .required('Không được để trống'),
-                       descriptionOtherUtilities:Yup.string()
-                           .required('Không được để trống'),
-                       roomStandard:Yup.string()
-                           .required('Không được để trống'),
-                       numberFloors:Yup.number()
-                           .required('Không được để trống')
-                           .min(0,'Lớn hơn 0'),
-                       poolArea:Yup.number()
-                           .required('Không được để trống')
-                           .min(0,'Lớn hơn 0'),
-                       freeServiceIncluded:Yup.string()
-                           .required('Không được để trống'),
-                       image:Yup.string()
-                           .required('Không được để trống')
+                    validationSchema={Yup.object({
+                        typeServiceId: Yup.string()
+                            .required('Không được để trống'),
+                        name: Yup.string()
+                            .required('Không được để trống')
+                            .matches(/^[A-Z][a-z]*(\s[A-Z][a-z]*)+$/, 'Không được là số'),
+                        acreage: Yup.number()
+                            .required('Không được để trống')
+                            .min(0, 'Lớn hơn 0'),
+                        rentalCosts: Yup.number()
+                            .required('Không được để trống'),
+                        maximumNumberPeople: Yup.number()
+                            .required('Không được để trống')
+                            .min(0, 'Lớn hơn 0'),
+                        typeRental: Yup.string()
+                            .required('Không được để trống'),
+                        descriptionOtherUtilities: Yup.string()
+                            .required('Không được để trống'),
+                        roomStandard: Yup.string()
+                            .required('Không được để trống'),
+                        numberFloors: Yup.number()
+                            .required('Không được để trống')
+                            .min(0, 'Lớn hơn 0'),
+                        poolArea: Yup.number()
+                            .required('Không được để trống')
+                            .min(0, 'Lớn hơn 0'),
+                        freeServiceIncluded:Yup.string()
+                            .required('Không được để trống'),
+                        image: Yup.string()
+                            .required('Không được để trống')
 
-                   })}
-                    onSubmit={ (values, {setSubmitting}) => {
-                        const create = async () => {
+                    })}
+                    onSubmit={async (values, {setSubmitting}) => {
+                        const createService = async () => {
                             setSubmitting(false)
-                            await serviceService.save(values)
+                            await serviceService.save({...values,typeServiceId:+values.typeServiceId})
+                            console.log(values)
                             Swal.fire({
-                                icon:"success",
-                                title:"Thêm mới thành công",
-                                timer:"2000"
+                                icon: "success",
+                                title: "Thêm mới thành công",
+                                timer: "2000"
                             })
                             navigate("/listFacilityService")
                         }
-                        create();
+                        createService()
                     }}
             >
 
@@ -94,19 +96,19 @@ export function CreateService() {
                                 <Form>
                                     <div className=" mt-4 inputs">
                                         <Field
-                                            onClick={(event)=>setType(event.target.value)}
+                                            // onChange={(event) => setType(event.target.value)}
                                             as="select"
-                                            name="type"
+                                            name="typeServiceId"
                                             className="form-control"
                                         >
-                                            {/*{type.map((listType)=>(*/}
-                                            {/*    <option key={listType.id} value={listType.name}>{listType.name}</option>*/}
-                                            {/*))}*/}
-                                            <option value="Villa">Villa</option>
-                                            <option value="House">House</option>
-                                            <option value="Room">Room</option>
+                                            {type.map((listType) => (
+                                                <option key={listType.id} value={listType.id}>{listType.nameTypeService}</option>
+                                            ))}
+                                            {/*<option value="Villa">Villa</option>*/}
+                                            {/*<option value="House">House</option>*/}
+                                            {/*<option value="Room">Room</option>*/}
                                         </Field>
-                                        <ErrorMessage name="type" component="span" className="error-r"/>
+                                        <ErrorMessage name="typeServiceId" component="span" className="error-r"/>
                                     </div>
                                     <div className=" mt-4 inputs">
                                         <Field
@@ -147,7 +149,8 @@ export function CreateService() {
                                                 name="maximumNumberPeople"
                                                 placeholder="Số người tối đa"
                                             />
-                                            <ErrorMessage name="maximumNumberPeople" component="span" className="error-r"/>
+                                            <ErrorMessage name="maximumNumberPeople" component="span"
+                                                          className="error-r"/>
 
                                         </div>
                                     </div>
@@ -157,18 +160,18 @@ export function CreateService() {
                                             className="form-control"
                                             as="select"
                                         >
-                                            <option value="" >
+                                            <option value="">
                                                 --Loại hình cho thuê--
                                             </option>
                                             <option value="Year">Year</option>
-                                            <option value="Month" >Month</option>
+                                            <option value="Month">Month</option>
                                             <option value="Day">Day</option>
                                             <option value="Hour">Hour</option>
                                         </Field>
                                         <ErrorMessage name="typeRental" component="span" className="error-r"/>
 
                                     </div>
-                                    {type !== 'Room' ?
+                                    {/*{type !== 2 ?*/}
                                         <div className="mt-4 ">
                                             <Field
                                                 type="text"
@@ -177,12 +180,13 @@ export function CreateService() {
                                                 name="descriptionOtherUtilities"
                                                 placeholder="Mô tả các tiện ích khác(Villa,House)"
                                             />
-                                            <ErrorMessage name="descriptionOtherUtilities" component="span" className="error-r"/>
+                                            <ErrorMessage name="descriptionOtherUtilities" component="span"
+                                                          className="error-r"/>
                                         </div>
-                                        : ''
-                                    }
+                                    {/*    : ''*/}
+                                    {/*}*/}
                                     <div className="row mt-4 ">
-                                        {type !== 'Room' ?
+                                        {/*{type !== 2 ?*/}
                                             <div className="col-md-6 form-group">
                                                 <Field
                                                     type="text"
@@ -192,9 +196,9 @@ export function CreateService() {
                                                 />
                                                 <ErrorMessage name="roomStandard" component="span" className="error-r"/>
                                             </div>
-                                            :''
-                                        }
-                                        {type !=='Room' ?
+                                        {/*//     : ''*/}
+                                        {/*// }*/}
+                                        {/*// {type !== 2 ?*/}
                                             <div className="col-md-6 form-group mt-3 mt-md-0">
                                                 <Field
                                                     type="number"
@@ -205,11 +209,11 @@ export function CreateService() {
                                                 <ErrorMessage name="numberFloors" component="span" className="error-r"/>
 
                                             </div>
-                                            :''
-                                        }
+                                        {/*//     : ''*/}
+                                        {/*// }*/}
                                     </div>
                                     <div className="row mt-2">
-                                        {type ==='Villa' ?
+                                        {/*{type === 1 ?*/}
                                             <div className="col-md-12 form-group">
                                                 <Field
                                                     type="text"
@@ -218,23 +222,22 @@ export function CreateService() {
                                                     placeholder="Diện tích hồ bơi"
                                                 />
                                                 <ErrorMessage name="poolArea" component="span" className="error-r"/>
-
                                             </div>
-                                            :''
-                                        }
-                                        {type === 'Room' ?
+                                        {/*//     : ''*/}
+                                        {/*// }*/}
+                                        {/*// {type === 2 ?*/}
                                             <div className="col-md-12 form-group mt-2 mt-md-0">
-                                                <input
+                                                <Field
                                                     type="text"
                                                     className="form-control"
                                                     name="freeServiceIncluded"
                                                     placeholder="Dịch vụ miễn phí đi kèm"
                                                 />
-                                                <ErrorMessage name="freeServiceIncluded" component="span" className="error-r"/>
+                                                <ErrorMessage name="freeServiceIncluded" component="span"
+                                                              className="error-r"/>
                                             </div>
-                                            : ''
-                                        }
-
+                                        {/*//     : ''*/}
+                                        {/*// }*/}
                                     </div>
                                     <div className=" mt-2 inputs">
                                         <Field

@@ -3,14 +3,13 @@ import {NavAdmin} from "../NavAdmin";
 import {useEffect, useState} from "react";
 import * as customerService from '../serive/CustomerService';
 import Swal from "sweetalert2";
+import ReactPaginate from "react-paginate";
 
 export function ListCustomer() {
     const [customer, setCustomer] = useState([])
     const [typeCustomer, setTypeCustomer] = useState([])
-    useEffect(() => {
-        findAllCustomer()
-        typeCustomerList()
-    }, [])
+    const [pageCount,setPageCount] = useState(0)
+
     const findAllCustomer = async () => {
         const result = await customerService.findAll();
         setCustomer(result)
@@ -19,6 +18,19 @@ export function ListCustomer() {
         const res = await customerService.findAllTypeCustomer()
         setTypeCustomer(res)
     }
+    const fecthApi = async () => {
+        const rs = await customerService.findAll('',1)
+        const pages = await customerService.getTotalPages()
+        let total = Math.ceil(pages.length/5)
+        setPageCount(total)
+        setCustomer(rs)
+    }
+
+    useEffect(() => {
+        fecthApi()
+        findAllCustomer()
+        typeCustomerList()
+    }, [])
     const deleteCustomers = async (id) => {
         await customerService.deleteCustoemr(id)
         Swal.fire({
@@ -45,6 +57,13 @@ export function ListCustomer() {
             })
 
     }
+
+    const handlePageClick= async(data)=> {
+        let currentPage = data.selected + 1
+        const rs = await customerService.findAll('', currentPage)
+        setCustomer(rs)
+    }
+
     return (
         <>
             <NavAdmin/>
@@ -101,92 +120,22 @@ export function ListCustomer() {
                 </tbody>
 
             </table>
-            {/*phân trang*/}
-            <nav aria-label=" Page navigation example d-flex justify-content-center ">
-                <ul className="pagination d-flex justify-content-center ">
-                    <li className="page-item ">
-                        <a className="page-link" href="case/src/components#">
-                            <i className="fa-solid fa-arrow-left"/>
-                        </a>
-                    </li>
-                    <li className="page-item ">
-                        <a className="page-link " href="case/src/components#">
-                            1
-                        </a>
-                    </li>
-                    <li className="page-item">
-                        <a className="page-link" href="case/src/components#">
-                            2
-                        </a>
-                    </li>
-                    <li className="page-item">
-                        <a className="page-link" href="case/src/components#">
-                            3
-                        </a>
-                    </li>
-                    <li className="page-item">
-                        <a className="page-link" href="case/src/components#">
-                            4
-                        </a>
-                    </li>
-                    <li className="page-item">
-                        <a className="page-link" href="case/src/components#">
-                            5
-                        </a>
-                    </li>
-                    <li className="page-item">
-                        <a className="page-link" href="case/src/components#">
-                            6
-                        </a>
-                    </li>
-                    <li className="page-item">
-                        <a className="page-link" href="case/src/components#">
-                            <i className="fa-solid fa-arrow-right"/>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            {/*modal*/}
-            <div
-                className="modal fade"
-                id="exampleModal"
-                tabIndex={-1}
-                aria-labelledby="exampleModalLabel"
-                aria-hidden="true"
-            >
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5
-                                className="modal-title"
-                                id="exampleModalLabel"
-                                style={{color: "#0c4128", fontSize: "1.4em"}}
-                            >
-                                Xoá
-                            </h5>
-                            <button
-                                type="button"
-                                className="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"
-                            />
-                        </div>
-                        <div className="modal-body">...</div>
-                        <div className="modal-footer">
-                            <button
-                                type="button"
-                                className="btn btn-secondary"
-                                data-bs-dismiss="modal"
-                            >
-                                Huỷ
-                            </button>
-                            <button type="button" className="btn btn-primary">
-                                Xoá
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+            <ReactPaginate
+                previousLabel= <i className="fa-solid fa-arrow-left"/>
+                nextLabel= <i className="fa-solid fa-arrow-right"/>
+                pageCount={pageCount}
+                onPageChange={handlePageClick}
+                containerClassName="pagination justify-content-center"
+                pageClassName="page-item"
+                pageLinkClassName="page-link"
+                previousClassName="page-item"
+                previousLinkClassName="page-link"
+                nextClassName="page-item"
+                nextLinkClassName="page-link"
+                activeClassName="active"
+
+            />
         </>
 
     )

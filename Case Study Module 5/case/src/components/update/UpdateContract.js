@@ -3,17 +3,30 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from 'yup';
 import * as contractService from '../serive/ContractSrevice';
 import * as serviceList from '../serive/Service';
-import {useNavigate} from "react-router-dom";
+import * as customerList from '../serive/CustomerService';
+import {useNavigate, useParams} from "react-router-dom";
 import Swal from "sweetalert2";
 import {useEffect, useState} from "react";
-import * as customerService from "../serive/CustomerService";
+import {updateContract} from "../serive/ContractSrevice";
 
-export function CreateRentalContract() {
+export function UpdateContract() {
     const navigate = useNavigate();
+    const pram = useParams()
+    const [contract, setContract] = useState()
     const [customerContract, setCustomer] = useState([])
     const [serviceContract, setService] = useState([])
+
+
+    useEffect(() => {
+        const findByIdContract = async () => {
+            const res = await contractService.findById(pram.id)
+            setContract(res)
+        }
+        findByIdContract()
+    }, [pram.id])
+
     const listCustomer = async () => {
-        const res = await customerService.findAll();
+        const res = await customerList.findAll();
         setCustomer(res)
     }
     const listService = async () => {
@@ -24,17 +37,20 @@ export function CreateRentalContract() {
         listCustomer();
         listService()
     }, [])
+    if (!contract) {
+        return null
+    }
     return (
         <>
             <NavAdmin/>
             <Formik initialValues={{
-                numberService: "",
-                startDay: "",
-                endDay: "",
-                deposit: "",
-                totalMoney: "",
-                customerId: 0,
-                serviceId: 1
+                numberService: contract?.numberService,
+                startDay: contract?.startDay,
+                endDay: contract?.endDay,
+                deposit: contract?.deposit,
+                totalMoney: contract?.totalMoney,
+                customerId: contract?.customerId,
+                serviceId: contract?.serviceId
 
             }}
                     validationSchema={Yup.object({
@@ -59,19 +75,18 @@ export function CreateRentalContract() {
 
 
                     })}
-                    onSubmit={async (values, {setSubmitting}) => {
-                        const create = async () => {
-                            setSubmitting(false)
-                            await contractService.save({...values, customerId: +values.customerId})
+                    onSubmit={async (values) => {
+                        const updateContract = async () => {
+                            await contractService.updateContract({...values, customerId: +values.customerId})
                             console.log(values)
                             Swal.fire({
                                 icon: "success",
                                 timer: "2000",
-                                title: "Thêm mới thành công"
+                                title: "Chỉnh sửa thành công"
                             })
                             navigate("/listRentalContract")
                         }
-                        create()
+                        updateContract()
                     }}>
                 <div className="container mt-5 mb-5 ">
                     <div

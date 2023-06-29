@@ -2,16 +2,34 @@ import {Link} from "react-router-dom";
 import {NavAdmin} from "../NavAdmin";
 import {useEffect, useState} from "react";
 import * as contractService from '../serive/ContractSrevice'
+import * as customerList from "../serive/CustomerService";
+import * as serviceList from "../serive/Service";
 
 
 export  function ListContract() {
     const [contract, setContract]=useState([])
-    useEffect(()=>{
-        const findAllContract = async () => {
-        const result= await contractService.findAll();
+    const [customer, setCustomer] = useState([])
+    const [service, setService] = useState([])
+    const findAllContract = async () => {
+        const result = await contractService.findAll();
         setContract(result)
+
     }
-    findAllContract()
+
+
+
+    const listCustomer = async () => {
+        const res = await customerList.findAll();
+        setCustomer(res)
+    }
+    const listService = async () => {
+        const res = await serviceList.findAll();
+        setService(res)
+    }
+    useEffect(() => {
+        listCustomer();
+        listService()
+        findAllContract()
     },[])
     return(
         <>
@@ -23,7 +41,8 @@ export  function ListContract() {
                 <thead className="table-light">
                 <tr>
                     <th>Id</th>
-                    {/*<th>Tên khách hàng</th>*/}
+                    <th>Tên khách hàng</th>
+                    <th>Tên dịch vụ</th>
                     <th>Số hợp đồng</th>
                     <th>Ngày bắt đầu</th>
                     <th>Ngày kết thúc</th>
@@ -36,13 +55,15 @@ export  function ListContract() {
                 {contract.map((list)=>(
                     <tr key={list.id}>
                         <td>{list.id}</td>
+                        <td>{customer.find(customer=>customer.id===list.customerId) ?.name}</td>
+                        <td>{service.find(service=>service.id===list.serviceId) ?.name}</td>
                         <td>{list.numberService}</td>
                         <td>{list.startDay}</td>
                         <td>{list.endDay}</td>
                         <td>{list.deposit}</td>
                         <td>{list.totalMoney}</td>
                         <td>
-                            <Link to="/"  className="btn btn-info"  style={{ fontSize: "1.2em",color:"white" }}>
+                            <Link to={`/updateContract/${list.id}`}  className="btn btn-info"  style={{ fontSize: "1.2em",color:"white" }}>
                                 Sửa
                             </Link>
                             <a

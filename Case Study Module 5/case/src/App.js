@@ -13,6 +13,7 @@ import {UpdateService} from "./components/update/UpdateService";
 import {ListContract} from "./components/list/ListContract";
 import {UpdateCustomer} from "./components/update/UpdateCustomer";
 import {ListService} from "./components/list/ListService";
+import {UpdateContract} from "./components/update/UpdateContract";
 
 
 function App() {
@@ -36,6 +37,8 @@ function App() {
                 <Route path={'/updateService/:id'} element={<UpdateService/>}></Route>
                 {/*CHỈNH SỬA KHÁCH HÀNG*/}
                 <Route path={'/updateCustomer/:id'} element={<UpdateCustomer/>}></Route>
+                {/*CHỈNH SỬA HỢP ĐỒNG*/}
+                <Route path={'/updateContract/:id'} element={<UpdateContract/>}></Route>
             </Routes>
         </>
     );

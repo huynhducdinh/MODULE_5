@@ -11,6 +11,7 @@ export default function Home() {
         <h1 className="text-center mt-5">Vietnam's COVID Information</h1>
        <Link href="/components/covidEpidemicInformation" className="btn btn-success" style={{marginLeft:"45%"}}>Get All</Link>
 
+
     </>
   )
 }

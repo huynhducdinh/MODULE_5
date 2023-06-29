@@ -2,33 +2,49 @@
   "service": [
     {
       "id": 1,
-      "typeServiceId": 1,
-      "name": "PHÒNG SUITE HƯỚNG BIỂN",
-      "acreage": 84.8,
-      "rentalCosts": "5.000.000",
+      "typeServiceId": 3,
+      "name": "Ok Ok",
+      "acreage": 123,
+      "rentalCosts": "13",
       "quantity": 10,
-      "rentalType": "Day",
-      "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg"
-    },
-    {
-      "id": 3,
-      "typeServiceId": 1,
-      "name": "PHÒNG DELUXE HƯỚNG BIỂN",
-      "acreage": 40.1,
-      "rentalCosts": "5.000.000",
-      "quantity": 10,
-      "rentalType": "Day",
-      "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg"
-    },
-    {
-      "id": 4,
-      "typeServiceId": 1,
-      "name": "PHÒNG SUPERIOR HƯỚNG HỒ",
-      "acreage": "555",
-      "rentalCosts": "5555",
-      "quantity": "5",
       "typeRental": "Month",
-      "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg"
+      "descriptionOtherUtilities": "123",
+      "roomStandard": "312",
+      "numberFloors": 312,
+      "poolArea": "123",
+      "freeServiceIncluded": "123",
+      "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg",
+      "maximumNumberPeople": "123"
+    },
+    {
+      "typeServiceId": 2,
+      "name": "Phong Vps",
+      "acreage": 123,
+      "rentalCosts": "13",
+      "maximumNumberPeople": "131",
+      "typeRental": "Year",
+      "descriptionOtherUtilities": "123",
+      "roomStandard": "31",
+      "numberFloors": 13,
+      "poolArea": "123",
+      "freeServiceIncluded": "",
+      "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Lagoon-Superior-twin-bed-M-1047x563.jpg",
+      "id": 2
+    },
+    {
+      "typeServiceId": 2,
+      "name": "Ok Ok",
+      "acreage": 123,
+      "rentalCosts": "312",
+      "maximumNumberPeople": "131",
+      "typeRental": "Month",
+      "descriptionOtherUtilities": "13",
+      "roomStandard": "123",
+      "numberFloors": 13,
+      "poolArea": "123",
+      "freeServiceIncluded": "",
+      "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Lagoon-Superior-twin-bed-M-1047x563.jpg",
+      "id": 3
     }
   ],
   "customer": [
@@ -44,80 +60,133 @@
       "address": "Quảng Nam"
     },
     {
+      "id": 2,
       "name": "Phan Thi",
-      "typeId": 5,
+      "typeId": 2,
       "birthday": "2023-06-08",
       "gender": "0",
       "cmnd": "111111111",
       "phone": "0111111811",
       "email": "heeyeon@gmail.com",
-      "address": "Đà ẵng",
-      "id": 2
+      "address": "Đà ẵng"
     },
     {
+      "id": 3,
       "name": "Phan Thi",
-      "typeId": 4,
+      "typeId": 3,
       "birthday": "2023-06-14",
       "gender": "0",
       "cmnd": "111111111",
       "phone": "0111111111",
       "email": "heeyeon@gmail.com",
-      "address": "Đà ẵng",
-      "id": 3
+      "address": "Đà ẵng"
     },
     {
+      "id": 4,
       "name": "Phan Thi",
-      "typeId": 5,
+      "typeId": 4,
       "birthday": "2023-06-05",
       "gender": "0",
       "cmnd": "111111111",
       "phone": "0111111111",
       "email": "heeyeon@gmail.com",
-      "address": "Đà ẵng",
-      "id": 4
+      "address": "Đà ẵng"
     },
     {
-      "name": "Phan Thi",
-      "typeId": 4,
+      "id": 5,
+      "name": "Phan Thi Nhi",
+      "typeId": 5,
       "birthday": "2023-05-31",
       "gender": "0",
-      "cmnd": "111122222",
+      "cmnd": "222222222",
       "phone": "0111111111",
-      "email": "heeyeon@gmail.com",
-      "address": "Đà ẵng",
-      "id": 5
+      "email": "heeyeon12@gmail.com",
+      "address": "Đà nẵng"
     },
     {
-      "name": "Phan Thi",
-      "typeId": 3,
-      "birthday": "2023-06-17",
+      "name": "Phong Vps",
+      "typeId": 2,
+      "birthday": "2023-06-02",
       "gender": "0",
-      "cmnd": "111111111",
+      "cmnd": "131312312",
       "phone": "0111111111",
       "email": "heeyeon@gmail.com",
-      "address": "Đà ẵng",
+      "address": "Đà nẵng",
       "id": 6
     },
     {
+      "id": 7,
       "name": "Phan Thi",
       "typeId": 1,
-      "birthday": "2023-06-07",
+      "birthday": "2023-06-02",
       "gender": "0",
       "cmnd": "111111111",
       "phone": "0111111111",
       "email": "heeyeon@gmail.com",
-      "address": "Đà ẵng",
-      "id": 7
+      "address": "Đà nẵng"
+    },
+    {
+      "id": 8,
+      "name": "Phan Thi",
+      "typeId": 2,
+      "birthday": "2023-06-03",
+      "gender": "0",
+      "cmnd": "112222222",
+      "phone": "0111111111",
+      "email": "heeyeon@gmail.com",
+      "address": "Đà ẵng"
     }
   ],
   "rentalContract": [
     {
-      "id": 1,
-      "numberService": "0001",
-      "startDay": "21-01-2023",
-      "endDay": "21-02-2023",
-      "deposit": "5.000.000",
-      "totalMoney": "10.000.000"
+      "numberService": "MHD-002",
+      "startDay": "2023-06-09",
+      "endDay": "2023-06-03",
+      "deposit": 999,
+      "totalMoney": 1212,
+      "customerId": 1,
+      "serviceId": 1,
+      "id": 2
+    },
+    {
+      "numberService": "MHD-0001",
+      "startDay": "2023-06-23",
+      "endDay": "2023-06-09",
+      "deposit": 123,
+      "totalMoney": 312,
+      "customerId": 2,
+      "serviceId": 1,
+      "id": 3
+    },
+    {
+      "numberService": "MHD-0003",
+      "startDay": "2023-06-24",
+      "endDay": "2023-06-17",
+      "deposit": 123,
+      "totalMoney": 123,
+      "customerId": 1,
+      "serviceId": 1,
+      "id": 4
+    },
+    {
+      "numberService": "MHD-0003",
+      "startDay": "2023-06-23",
+      "endDay": "2023-06-23",
+      "deposit": 1212,
+      "totalMoney": 1212,
+      "customerId": 2,
+      "serviceId": 1,
+      "id": 5
+    },
+    {
+      "numberService": "MHD-0002",
+      "startDay": "2023-06-30",
+      "endDay": "2023-07-06",
+      "deposit": 1212,
+      "totalMoney": 12,
+      "customerId": 2,
+      "serviceId": 1,
+      "id": 6
     }
   ],
   "typeService": [

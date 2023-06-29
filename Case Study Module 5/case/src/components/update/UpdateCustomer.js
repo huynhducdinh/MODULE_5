@@ -11,14 +11,15 @@ export function UpdateCustomer() {
     const param = useParams();
     const [customer, setCustomer] = useState();
     const [typeCustomer, setType] = useState([]);
-    const getById = async () => {
-        const res = await customerService.findById(param.id);
-        setCustomer(res);
-        console.log(res)
-    }
+
     useEffect(()=>{
-        getById();
-    },[])
+        const getById = async () => {
+            const res = await customerService.findById(param.id);
+            setCustomer(res);
+            console.log(res)
+        }
+        getById()
+    },[param.id])
 
     useEffect(() => {
         const typeCustomer =async () => {
@@ -26,7 +27,7 @@ export function UpdateCustomer() {
             setType(res);
         }
         typeCustomer();
-    },[param.id])
+    },[])
     if (!customer){
         return null
     }
@@ -34,22 +35,23 @@ export function UpdateCustomer() {
         <>
             <NavAdmin/>
             <Formik initialValues={{
-                id:customer.id,
-                name: customer.name,
-                typeId: typeCustomer.id,
-                birthday: customer.birthday,
-                gender: customer.gender,
-                cmnd: customer.cmnd,
-                phone: customer.phone,
-                email: customer.email,
-                address: customer.address
+                id:customer ?.id,
+                name: customer ?.name,
+                typeId: customer ?.typeId,
+                birthday: customer ?.birthday,
+                gender: customer ?.gender,
+                cmnd: customer ?.cmnd,
+                phone: customer ?.phone,
+                email: customer ?.email,
+                address: customer ?.address
             }}
                     validationSchema={Yup.object({
                         name: Yup.string()
                             .required('Không được để trống')
                             .matches(/^[A-Z][a-z]*(\s[A-Z][a-z]*)+$/,'Phải đúng định dạng tên, vd (Huynh Van A)'),
                         typeId: Yup.string()
-                            .required('Không được để trống'),
+                            .required('Không được để trống')
+                            .min(1),
                         birthday: Yup.date()
                             .required('Không được để trống'),
                         gender: Yup.string()
@@ -66,10 +68,11 @@ export function UpdateCustomer() {
                         address:Yup.string()
                             .required('Không được để trống')
                     })}
-                    onSubmit={(values,{setSubmitting})=>{
+                    onSubmit={ async (values,{setSubmitting})=>{
                     const updateCustomer = async () => {
                         setSubmitting(false)
                         await customerService.updateCustomer({...values, typeId: +values.id});
+                        console.log(values)
                         Swal.fire({
                             icon:"success",
                             title:"Chỉnh sửa thành công",
@@ -108,8 +111,9 @@ export function UpdateCustomer() {
                                             className="form-control"
                                             as="select"
                                         >
-                                            {typeCustomer.map((list) => (
-                                                <option key={list.id} value={list.id}>
+                                            <option value={0}>Chọn</option>
+                                            {typeCustomer.map((list,index) => (
+                                                <option key={index} value={list.id}>
                                                     {list.nameType}
                                                 </option>
                                             ))}

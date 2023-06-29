@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const findAll = async () => {
     try {
-        const result = await axios.get('http://localhost:8080/service')
+        const result = await axios.get('http://localhost:8080/service?_sort=id&_order=desc')
         return result.data
     } catch (e) {
         console.log(e)
@@ -16,9 +16,9 @@ export const findAllType = async () => {
         console.log(e)
     }
 }
-export const save = async (service) => {
+export const save =async (contract) => {
     try {
-        const result = await axios.post('http://localhost:8080/service', service)
+        const result = await axios.post('http://localhost:8080/service', contract)
         return result.data
     } catch (e) {
         console.log(e)

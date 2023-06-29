@@ -9,22 +9,28 @@ import Swal from "sweetalert2";
 
 export function UpdateService() {
     const [service, setService] = useState();
-    const [type, setType] = useState();
+    const [type, setType] = useState([]);
     const param = useParams();
     const navigate = useNavigate();
-    const getById = async () => {
-        const res = await serviceService.findById(param.id)
-        console.log(res)
-        setService(res)
-    }
-    // const findAllTypeService = async () => {
-    //     const res = await serviceService.findAllType();
-    //     setType(res)
-    // }
-    useEffect(() => {
+
+
+    useEffect(()=>{
+        const getById = async () => {
+            const res = await serviceService.findById(param.id)
+            console.log(res)
+            setService(res)
+        }
         getById()
-        // findAllTypeService()
     }, [param.id])
+
+
+    useEffect(() => {
+        const findAllTypeService = async () => {
+            const res = await serviceService.findAllType();
+            setType(res)
+        }
+        findAllTypeService()
+    },[])
 
     if (!service) {
         return null
@@ -33,22 +39,22 @@ export function UpdateService() {
         <>
             <NavAdmin/>
             <Formik initialValues={{
-                id: service.id,
-                type: service.type,
-                name: service.name,
-                acreage: service.rentalCosts,
-                rentalCosts: service.rentalCosts,
-                quantity: service.quantity,
-                typeRental: service.typeRental,
-                descriptionOtherUtilities: service.descriptionOtherUtilities,
-                roomStandard: service.roomStandard,
-                numberFloors: service.numberFloors,
-                poolArea: service.poolArea,
-                freeServiceIncluded: service.freeServiceIncluded,
+                id: service ?.id,
+                typeServiceId: service ?.typeServiceId,
+                name: service ?.name,
+                acreage: service ?.rentalCosts,
+                rentalCosts: service ?.rentalCosts,
+                quantity: service ?.quantity,
+                typeRental: service ?.typeRental,
+                descriptionOtherUtilities: service ?.descriptionOtherUtilities,
+                roomStandard: service ?.roomStandard,
+                numberFloors: service ?.numberFloors,
+                poolArea: service ?.poolArea,
+                freeServiceIncluded: service ?.freeServiceIncluded,
                 image: service.image
             }}
                     validationSchema={Yup.object({
-                        type:Yup.string()
+                        typeServiceId:Yup.string()
                             .required('Không được để trống'),
                         name:Yup.string()
                             .required('Không được để trống')
@@ -78,10 +84,10 @@ export function UpdateService() {
                         image:Yup.string()
                             .required('Không được để trống')
                     })}
-                    onSubmit={(values, {setSubmitting}) => {
+                    onSubmit={ async (values, {setSubmitting}) => {
                         const updateServices = async () => {
                             setSubmitting(false)
-                            await serviceService.updateService(values)
+                            await serviceService.updateService({...values,typeServiceId:+values.typeServiceId})
                             console.log(updateServices)
                             Swal.fire({
                                 icon: "success",
@@ -102,19 +108,19 @@ export function UpdateService() {
                                 <Form>
                                     <div className=" mt-4 inputs">
                                         <Field
-                                            onClick={(event)=>setType(event.target.value)}
+                                            // onClick={(event)=>setType(event.target.value)}
                                             as="select"
-                                            name="type"
+                                            name="typeServiceId"
                                             className="form-control"
                                         >
-                                            {/*{type.map((listType)=>(*/}
-                                            {/*    <option key={listType.id} value={listType.name}>{listType.name}</option>*/}
-                                            {/*))}*/}
-                                            <option value="Villa">Villa</option>
-                                            <option value="House">House</option>
-                                            <option value="Room">Room</option>
+                                            {type.map((listType) => (
+                                                <option key={listType.id} value={listType.id}>{listType.nameTypeService}</option>
+                                            ))}
+                                            {/*<option value="Villa">Villa</option>*/}
+                                            {/*<option value="House">House</option>*/}
+                                            {/*<option value="Room">Room</option>*/}
                                         </Field>
-                                        <ErrorMessage name="type" component="span" className="error-r"/>
+                                        <ErrorMessage name="typeServiceId" component="span" className="error-r"/>
                                     </div>
                                     <div className=" mt-4 inputs">
                                         <Field
@@ -176,7 +182,7 @@ export function UpdateService() {
                                         <ErrorMessage name="typeRental" component="span" className="error-r"/>
 
                                     </div>
-                                    {type !== 'Room' ?
+                                    {/*{type !== 'Room' ?*/}
                                         <div className="mt-4 ">
                                             <Field
                                                 type="text"
@@ -189,10 +195,10 @@ export function UpdateService() {
                                         </div>
 
 
-                                        : ''
-                                    }
+                                    {/*    : ''*/}
+                                    {/*}*/}
                                     <div className="row mt-4 ">
-                                        {type !== 'Room' ?
+                                        {/*{type !== 'Room' ?*/}
                                             <div className="col-md-6 form-group">
                                                 <Field
                                                     type="text"
@@ -202,9 +208,9 @@ export function UpdateService() {
                                                 />
                                                 <ErrorMessage name="roomStandard" component="span" className="error-r"/>
                                             </div>
-                                            :''
-                                        }
-                                        {type !=='Room' ?
+                                        {/*//     :''*/}
+                                        {/*// }*/}
+                                        {/*// {type !=='Room' ?*/}
                                             <div className="col-md-6 form-group mt-3 mt-md-0">
                                                 <Field
                                                     type="number"
@@ -215,11 +221,11 @@ export function UpdateService() {
                                                 <ErrorMessage name="numberFloors" component="span" className="error-r"/>
 
                                             </div>
-                                            :''
-                                        }
+                                        {/*//     :''*/}
+                                        {/*// }*/}
                                     </div>
                                     <div className="row mt-2">
-                                        {type ==='Villa' ?
+                                        {/*{type ==='Villa' ?*/}
                                             <div className="col-md-12 form-group">
                                                 <Field
                                                     type="text"
@@ -230,11 +236,11 @@ export function UpdateService() {
                                                 <ErrorMessage name="poolArea" component="span" className="error-r"/>
 
                                             </div>
-                                            :''
-                                        }
-                                        {type === 'Room' ?
+                                        {/*//     :''*/}
+                                        {/*// }*/}
+                                        {/*// {type === 'Room' ?*/}
                                             <div className="col-md-12 form-group mt-2 mt-md-0">
-                                                <input
+                                                <Field
                                                     type="text"
                                                     className="form-control"
                                                     name="freeServiceIncluded"
@@ -242,8 +248,8 @@ export function UpdateService() {
                                                 />
                                                 <ErrorMessage name="freeServiceIncluded" component="span" className="error-r"/>
                                             </div>
-                                            : ''
-                                        }
+                                        {/*//     : ''*/}
+                                        {/*// }*/}
 
                                     </div>
                                     <div className=" mt-2 inputs">

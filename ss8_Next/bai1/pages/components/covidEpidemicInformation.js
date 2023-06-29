@@ -1,9 +1,10 @@
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 export default function CovidEpidemicInformation({covid}) {
     return (
         <>
-                <h1 className="text-center mt-5">Vietnam's COVID Information</h1>
+            <h1 className="text-center mt-5">Vietnam's COVID Information</h1>
             <table className="table table-hover">
                 <thead>
                 <tr>

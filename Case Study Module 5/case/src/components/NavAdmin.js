@@ -43,14 +43,6 @@ export function NavAdmin() {
                                             </NavLink>
                                         </li>
                                         <li
-                                            id="nav-menu-item-5008"
-                                            className="nav-item  menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page"
-                                        >
-                                            <NavLink to="d" className="nav-link main-menu-link">
-                                                NHÂN VIÊN
-                                            </NavLink>
-                                        </li>
-                                        <li
                                             id="nav-menu-item-50010"
                                             className="nav-item  menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page"
                                         >
@@ -76,7 +68,6 @@ export function NavAdmin() {
                                                 <a className="dropbtn nav-link main-menu-link">THÊM MỚI</a>
                                                 <div className="dropdown-content">
                                                     <Link to="/createCustomer">Thêm mới khách hàng</Link>
-                                                    <a href="case/src/components#">Thêm mới nhân viên</a>
                                                     <Link to ="/createRentalContract">Thêm mới hợp đồng thuê</Link>
                                                     <Link to= "/createService">Thêm mới dịch vụ</Link>
                                                 </div>

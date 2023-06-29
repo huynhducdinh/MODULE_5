@@ -15,13 +15,13 @@ export function CreateCustomer() {
             setTypeCustomer(res)
         }
         typeCustomerList()
-    },[])
+    }, [])
     return (
         <>
             <NavAdmin/>
             <Formik initialValues={{
                 name: '',
-                typeId: 1 ,
+                typeId: 1,
                 birthday: '',
                 gender: '',
                 cmnd: '',
@@ -32,7 +32,7 @@ export function CreateCustomer() {
                     validationSchema={Yup.object({
                         name: Yup.string()
                             .required('Không được để trống')
-                            .matches(/^[A-Z][a-z]*(\s[A-Z][a-z]*)+$/,'Phải đúng định dạng tên, vd (Huynh Van A)'),
+                            .matches(/^[A-Z][a-z]*(\s[A-Z][a-z]*)+$/, 'Phải đúng định dạng tên, vd (Huynh Van A)'),
                         typeId: Yup.string()
                             .required('Không được để trống'),
                         birthday: Yup.date()
@@ -41,22 +41,20 @@ export function CreateCustomer() {
                             .required('Không được để trống'),
                         cmnd: Yup.string()
                             .required('Không được để trống')
-                            .matches( /^\d{9}$/,'Chứng minh nhân nhân đủ 9 số'),
+                            .matches(/^\d{9}$/, 'Chứng minh nhân nhân đủ 9 số'),
                         phone: Yup.string()
                             .required('Không được để trống')
-                            .matches(/^((\+84)|0)[0-9]{9}$/,'Số điện thoại bắt buộc 10 số bắt đầu bằng 0'),
+                            .matches(/^((\+84)|0)[0-9]{9}$/, 'Số điện thoại bắt buộc 10 số bắt đầu bằng 0'),
                         email: Yup.string()
                             .required('Không được để trống')
                             .matches(/^[a-zA-Z0-9+_-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, "Nhập đúng định dạng Email(vd adc098@gmail.com)"),
-                        address:Yup.string()
+                        address: Yup.string()
                             .required('Không được để trống')
                     })}
-                    onSubmit={(values, {setSubmitting}) => {
+                    onSubmit={async (values, {setSubmitting}) => {
                         const create = async () => {
                             setSubmitting(false)
-                            // values.typeId = parseInt(values.id)
-                            await customerService.save({...values,typeId: +values.typeId})
-
+                            await customerService.save({...values, typeId: +values.typeId})
                             Swal.fire({
                                 icon: "success",
                                 title: "Thêm mới thành công",
