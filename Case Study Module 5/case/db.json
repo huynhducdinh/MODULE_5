@@ -1,22 +1,6 @@
 {
   "service": [
     {
-      "id": 1,
-      "typeServiceId": 3,
-      "name": "Ok Ok",
-      "acreage": 123,
-      "rentalCosts": "13",
-      "quantity": 10,
-      "typeRental": "Month",
-      "descriptionOtherUtilities": "123",
-      "roomStandard": "312",
-      "numberFloors": 312,
-      "poolArea": "123",
-      "freeServiceIncluded": "123",
-      "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg",
-      "maximumNumberPeople": "123"
-    },
-    {
       "typeServiceId": 2,
       "name": "Phong Vps",
       "acreage": 123,
@@ -139,33 +123,13 @@
   ],
   "rentalContract": [
     {
-      "numberService": "MHD-002",
-      "startDay": "2023-06-09",
-      "endDay": "2023-06-03",
-      "deposit": 999,
-      "totalMoney": 1212,
-      "customerId": 1,
-      "serviceId": 1,
-      "id": 2
-    },
-    {
-      "numberService": "MHD-0001",
-      "startDay": "2023-06-23",
-      "endDay": "2023-06-09",
-      "deposit": 123,
-      "totalMoney": 312,
-      "customerId": 2,
-      "serviceId": 1,
-      "id": 3
-    },
-    {
       "numberService": "MHD-0003",
       "startDay": "2023-06-24",
       "endDay": "2023-06-17",
       "deposit": 123,
       "totalMoney": 123,
-      "customerId": 1,
-      "serviceId": 1,
+      "customerId": 4,
+      "serviceId": 2,
       "id": 4
     },
     {
@@ -174,8 +138,8 @@
       "endDay": "2023-06-23",
       "deposit": 1212,
       "totalMoney": 1212,
-      "customerId": 2,
-      "serviceId": 1,
+      "customerId": 4,
+      "serviceId": 2,
       "id": 5
     },
     {
@@ -184,8 +148,8 @@
       "endDay": "2023-07-06",
       "deposit": 1212,
       "totalMoney": 12,
-      "customerId": 2,
-      "serviceId": 1,
+      "customerId": 4,
+      "serviceId": 2,
       "id": 6
     }
   ],

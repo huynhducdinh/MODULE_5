@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import * as contractService from '../serive/ContractSrevice'
 import * as customerList from "../serive/CustomerService";
 import * as serviceList from "../serive/Service";
+import Swal from "sweetalert2";
 
 
 export  function ListContract() {
@@ -15,9 +16,15 @@ export  function ListContract() {
         setContract(result)
 
     }
-
-
-
+    const deleteContractId = async (id) => {
+        await contractService.deleteContract(id)
+        Swal.fire({
+            icon:"success",
+            title:"Xoá thành công",
+            timer:"2000"
+        })
+        findAllContract()
+    }
     const listCustomer = async () => {
         const res = await customerList.findAll();
         setCustomer(res)
@@ -27,10 +34,29 @@ export  function ListContract() {
         setService(res)
     }
     useEffect(() => {
+        findAllContract()
         listCustomer();
         listService()
-        findAllContract()
+
+
     },[])
+
+    const deleteRentalContract = async (id, numberService) => {
+        Swal.fire({
+            icon:"warning",
+            title:`Bạn có muốn xoá mã <span>${numberService}</span> của hợp đồng này không ?`,
+            showCancelButton:true,
+            confirmButtonText:"Yes",
+            cancelButtonColor:"#867676",
+            confirmButtonColor:"#d33"
+        })
+            .then((res)=>{
+                if (res.isConfirmed){
+                    deleteContractId(id)
+                }
+            })
+
+    }
     return(
         <>
             <NavAdmin/>
@@ -69,8 +95,7 @@ export  function ListContract() {
                             <a
                                 className="btn btn-danger"
                                 style={{ marginLeft: "5%", width: 70, fontSize: "1.2em",color:"white" }}
-                                data-bs-toggle="modal"
-                                data-bs-target="#exampleModal"
+                               onClick={()=>deleteRentalContract(list.id,list.numberService)}
                             >
                                 Xoá
                             </a>

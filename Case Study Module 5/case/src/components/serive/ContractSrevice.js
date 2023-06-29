@@ -24,11 +24,18 @@ export const findById = async (id) => {
         console.log(e)
     }
 }
+export const deleteContract = async (id) => {
+    try {
+        const res = await axios.delete('http://localhost:8080/rentalContract/' + id)
+        return res.data
+    } catch (e) {
+        console.log(e)
+    }
+}
 export  const updateContract = async (value) => {
     try {
         await axios.put('http://localhost:8080/customer/'+value.id,value)
     }catch (e) {
         console.log(e)
     }
-
 }
