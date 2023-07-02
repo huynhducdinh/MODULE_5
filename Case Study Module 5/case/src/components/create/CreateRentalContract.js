@@ -12,18 +12,23 @@ export function CreateRentalContract() {
     const navigate = useNavigate();
     const [customerContract, setCustomer] = useState([])
     const [serviceContract, setService] = useState([])
+    const [serviceId, setServiceId] = useState()
     const listCustomer = async () => {
-        const res = await customerService.findAll();
+        const res = await customerService.findAllCustomer();
         setCustomer(res)
     }
     const listService = async () => {
-        const res = await serviceList.findAll();
+        const res = await serviceList.findAllService();
         setService(res)
     }
     useEffect(() => {
         listCustomer();
         listService()
     }, [])
+    if (!serviceContract){
+        return  null;
+    }
+    console.log(serviceContract.find((e) => e.id == serviceId) ?.rentalCosts)
     return (
         <>
             <NavAdmin/>
@@ -32,15 +37,12 @@ export function CreateRentalContract() {
                 startDay: "",
                 endDay: "",
                 deposit: "",
-                totalMoney: "",
+                total: '',
                 customerId: 0,
-                serviceId: 1
+                serviceId: 0
 
             }}
                     validationSchema={Yup.object({
-                        numberService: Yup.string()
-                            .required('Không được để trống')
-                            .matches(/^MHD-\d+$/, 'Nhập đúng mã hợp đồng theo định dạng vd (MHD-0012)'),
                         startDay: Yup.date()
                             .required('Không được để trống'),
                         endDay: Yup.date()
@@ -48,16 +50,11 @@ export function CreateRentalContract() {
                         deposit: Yup.number()
                             .required('Không được để trống')
                             .min(100, 'Lớn hơn 100'),
-                        totalMoney: Yup.number()
-                            .required('Không được để trống')
-                            .min(0, 'Lớn hơn 0'),
                         customerId: Yup.string()
                             .required('Không được để trống')
                             .min(1),
                         serviceId: Yup.string()
                             .required('Không được để trống'),
-
-
                     })}
                     onSubmit={async (values, {setSubmitting}) => {
                         const create = async () => {
@@ -90,7 +87,9 @@ export function CreateRentalContract() {
                                             name="customerId"
                                             className="form-control"
                                             as="select"
+                                            type="number"
                                         >
+                                            <option value={0}>Chọn khách hàng</option>
                                             {customerContract.map((list) => (
                                                 <option key={list.id} value={list.id}>
                                                     {list.name}
@@ -101,27 +100,20 @@ export function CreateRentalContract() {
                                     </div>
                                     <div className="mt-4 ">
                                         <span/>
-                                        <Field
-                                            name="serviceId"
-                                            className="form-control"
-                                            as="select"
-
-                                        >{serviceContract.map((list) => (
-                                            <option key={list.id} value={list.id}>
-                                                {list.name}
-                                            </option>
-                                        ))}
+                                        <Field onClick={(e) => (setServiceId(e.target.value))}
+                                               name="serviceId"
+                                               className="form-control"
+                                               as="select"
+                                               type="number"
+                                        >
+                                            <option value={0}>Chọn tên dịch vụ</option>
+                                            {serviceContract.map((list) => (
+                                                <option key={list.id} value={list.id}>
+                                                    {list.name}
+                                                </option>
+                                            ))}
                                         </Field>
                                         <ErrorMessage name="serviceId" component="span" className="error-r"/>
-                                    </div>
-                                    <div className="mt-4 ">
-                                        <Field
-                                            type="text"
-                                            className="form-control"
-                                            name="numberService"
-                                            placeholder="Số hợp đồng vd (MHD-0012)"
-                                        />
-                                        <ErrorMessage name="numberService" component="span" className="error-r"/>
                                     </div>
                                     <div className="mt-4 ">
                                         <Field
@@ -150,27 +142,27 @@ export function CreateRentalContract() {
                                                 type="number"
                                                 className="form-control"
                                                 name="deposit"
-                                                placeholder="Số tiền cọc trước"
+                                                placeholder="Số tiền cọc trước( Phải lớn hơn 100)"
                                             />
                                             <ErrorMessage name="deposit" component="span"
                                                           className="error-r"/>
 
-                                        </div>
-                                    </div>
-                                    <div className=" mt-4  ">
-                                        <div className=" form-group">
-                                            <Field
-                                                type="number"
-                                                name="totalMoney"
-                                                className="form-control"
-                                                placeholder="Tổng số tiền thanh toán"
-                                            />
-                                            <ErrorMessage name="totalMoney" component="span"
-                                                          className="error-r"/>
+                                            <div className="  mt-4 ">
+                                                <Field
+                                                    disabled
+                                                    type="number"
+                                                    className="form-control"
+                                                    name="total"
+                                                    placeholder="Tổng tiền"
+                                                    value={serviceContract.find((e) => e.id == serviceId)?.rentalCosts}
+                                                />
+                                                <ErrorMessage name="deposit" component="span"
+                                                              className="error-r"/>
 
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="text-center m-auto">
+                                    <div className="text-center m-auto mt-4">
                                         <button type="submit" className=" btn btn-success ">
                                             <b className="text-center">THÊM MỚI HỢP ĐỒNG THUÊ</b>
                                         </button>

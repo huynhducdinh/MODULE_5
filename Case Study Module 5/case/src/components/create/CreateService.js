@@ -8,12 +8,13 @@ import * as Yup from 'yup';
 
 export function CreateService() {
     const navigate = useNavigate();
-    const [type, setType] = useState([]);
+    const [type, setType] = useState("0");
+    const [typeService, setTypeService] = useState([]);
     useEffect(() => {
         const findAllType = async () => {
             const res = await serviceService.findAllType();
             console.log(res)
-            setType(res)
+            setTypeService(res)
         }
         findAllType()
 
@@ -23,7 +24,7 @@ export function CreateService() {
         <>
             <NavAdmin/>
             <Formik initialValues={{
-                typeServiceId: 1,
+                typeServiceId: 0,
                 name: '',
                 acreage: '',
                 rentalCosts: '',
@@ -37,7 +38,7 @@ export function CreateService() {
                 image: ''
             }}
                     validationSchema={Yup.object({
-                        typeServiceId: Yup.string()
+                        typeServiceId: Yup.number()
                             .required('Không được để trống'),
                         name: Yup.string()
                             .required('Không được để trống')
@@ -53,25 +54,54 @@ export function CreateService() {
                         typeRental: Yup.string()
                             .required('Không được để trống'),
                         descriptionOtherUtilities: Yup.string()
-                            .required('Không được để trống'),
+                            .test('', '', function (value) {
+                                if (type !== '2') {
+                                    return Yup.string().required('Không được để trống')
+                                        .isValidSync(value)
+                                }
+                                return true;
+                            }),
                         roomStandard: Yup.string()
-                            .required('Không được để trống'),
+                            .test('', '', function (value) {
+                                if (type !== '2') {
+                                    return Yup.string().required('Không được để trống')
+                                        .isValidSync(value)
+                                }
+                                return true
+                            }),
                         numberFloors: Yup.number()
-                            .required('Không được để trống')
-                            .min(0, 'Lớn hơn 0'),
+                            .test('OKok', 'Số tầng > 0', function (value) {
+                                if (type !== '2') {
+                                    return Yup.number().required('Không được để trống')
+                                        .min(1, 'Lớn hơn 0')
+                                        .isValidSync(value);
+                                }
+                                return true;
+                            }),
                         poolArea: Yup.number()
-                            .required('Không được để trống')
-                            .min(0, 'Lớn hơn 0'),
-                        freeServiceIncluded:Yup.string()
-                            .required('Không được để trống'),
-                        image: Yup.string()
-                            .required('Không được để trống')
+                            .test('OKok', 'Diện tích hồ bơi > 0', function (value) {
+                                if (type === '1') {
+                                    return Yup.number().required('Không được để trống')
+                                        .min(1, 'Lớn hơn 0')
+                                        .isValidSync(value);
+                                }
+                                return true;
+                            }),
 
+                        freeServiceIncluded: Yup.string()
+                            .test('', '', function (value) {
+                                if (type === '2') {
+                                    return Yup.string().required('Không được để trống')
+                                        .isValidSync(value)
+                                }
+                            }),
+                        image: Yup.string()
+                            .required('Không được để trống'),
                     })}
                     onSubmit={async (values, {setSubmitting}) => {
                         const createService = async () => {
                             setSubmitting(false)
-                            await serviceService.save({...values,typeServiceId:+values.typeServiceId})
+                            await serviceService.save({...values, typeServiceId: +values.typeServiceId})
                             console.log(values)
                             Swal.fire({
                                 icon: "success",
@@ -96,13 +126,15 @@ export function CreateService() {
                                 <Form>
                                     <div className=" mt-4 inputs">
                                         <Field
-                                            // onChange={(event) => setType(event.target.value)}
+                                            onClick={(e) => setType(e.target.value)}
                                             as="select"
                                             name="typeServiceId"
                                             className="form-control"
                                         >
-                                            {type.map((listType) => (
-                                                <option key={listType.id} value={listType.id}>{listType.nameTypeService}</option>
+                                            <option value={0}>--Chọn loại dịch vụ--</option>
+                                            {typeService.map((listType) => (
+                                                <option key={listType.id}
+                                                        value={listType.id}>{listType.nameTypeService}</option>
                                             ))}
                                             {/*<option value="Villa">Villa</option>*/}
                                             {/*<option value="House">House</option>*/}
@@ -124,7 +156,6 @@ export function CreateService() {
                                         <Field
                                             type="number"
                                             className="form-control"
-                                            min="0"
                                             name="acreage"
                                             placeholder="Diện tích sử dụng"
                                         />
@@ -134,7 +165,7 @@ export function CreateService() {
                                     <div className="row mt-4  ">
                                         <div className="col-md-6 form-group">
                                             <Field
-                                                type="text"
+                                                type="number"
                                                 name="rentalCosts"
                                                 className="form-control"
                                                 placeholder="Chi phí thuê"
@@ -171,22 +202,21 @@ export function CreateService() {
                                         <ErrorMessage name="typeRental" component="span" className="error-r"/>
 
                                     </div>
-                                    {/*{type !== 2 ?*/}
+                                    {type !== '2' ?
                                         <div className="mt-4 ">
                                             <Field
                                                 type="text"
                                                 className="form-control"
-
                                                 name="descriptionOtherUtilities"
                                                 placeholder="Mô tả các tiện ích khác(Villa,House)"
                                             />
                                             <ErrorMessage name="descriptionOtherUtilities" component="span"
                                                           className="error-r"/>
                                         </div>
-                                    {/*    : ''*/}
-                                    {/*}*/}
+                                        : ''
+                                    }
                                     <div className="row mt-4 ">
-                                        {/*{type !== 2 ?*/}
+                                        {type !== '2' ?
                                             <div className="col-md-6 form-group">
                                                 <Field
                                                     type="text"
@@ -196,9 +226,9 @@ export function CreateService() {
                                                 />
                                                 <ErrorMessage name="roomStandard" component="span" className="error-r"/>
                                             </div>
-                                        {/*//     : ''*/}
-                                        {/*// }*/}
-                                        {/*// {type !== 2 ?*/}
+                                            : ''
+                                        }
+                                        {type !== '2' ?
                                             <div className="col-md-6 form-group mt-3 mt-md-0">
                                                 <Field
                                                     type="number"
@@ -209,23 +239,23 @@ export function CreateService() {
                                                 <ErrorMessage name="numberFloors" component="span" className="error-r"/>
 
                                             </div>
-                                        {/*//     : ''*/}
-                                        {/*// }*/}
+                                            : ''
+                                        }
                                     </div>
                                     <div className="row mt-2">
-                                        {/*{type === 1 ?*/}
+                                        {type === '1' ?
                                             <div className="col-md-12 form-group">
                                                 <Field
-                                                    type="text"
+                                                    type="number"
                                                     name="poolArea"
                                                     className="form-control"
                                                     placeholder="Diện tích hồ bơi"
                                                 />
                                                 <ErrorMessage name="poolArea" component="span" className="error-r"/>
                                             </div>
-                                        {/*//     : ''*/}
-                                        {/*// }*/}
-                                        {/*// {type === 2 ?*/}
+                                            : ''
+                                        }
+                                        {type === '2' ?
                                             <div className="col-md-12 form-group mt-2 mt-md-0">
                                                 <Field
                                                     type="text"
@@ -236,8 +266,8 @@ export function CreateService() {
                                                 <ErrorMessage name="freeServiceIncluded" component="span"
                                                               className="error-r"/>
                                             </div>
-                                        {/*//     : ''*/}
-                                        {/*// }*/}
+                                            : ''
+                                        }
                                     </div>
                                     <div className=" mt-2 inputs">
                                         <Field

@@ -1,11 +1,27 @@
 import axios from "axios";
 
-export const findAll = async () => {
+export const findAll= async (value, page) => {
     try {
-        const result = await axios.get('http://localhost:8080/service?_sort=id&_order=desc')
+        const result = await axios.get(`http://localhost:8080/service?name_like=${value}&_page=${page}&_limit=5&_sort=id&_order=desc`)
         return result.data
     } catch (e) {
         console.log(e)
+    }
+}
+export const findAllService = async () => {
+    try {
+        const result = await axios.get(`http://localhost:8080/service`)
+        return result.data
+    } catch (e) {
+        console.log(e)
+    }
+}
+export const getTotalPages = async () => {
+    try {
+        const res = await axios.get(`http://localhost:8080/service`)
+        return res.data
+    } catch (error) {
+        console.log(error)
     }
 }
 export const findAllType = async () => {
@@ -16,7 +32,7 @@ export const findAllType = async () => {
         console.log(e)
     }
 }
-export const save =async (contract) => {
+export const save = async (contract) => {
     try {
         const result = await axios.post('http://localhost:8080/service', contract)
         return result.data

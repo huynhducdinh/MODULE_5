@@ -1,14 +1,15 @@
 import {Link} from "react-router-dom";
 import {NavAdmin} from "../NavAdmin";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import * as customerService from '../serive/CustomerService';
 import Swal from "sweetalert2";
 import ReactPaginate from "react-paginate";
+import {Field, Form, Formik} from "formik";
 
 export function ListCustomer() {
     const [customer, setCustomer] = useState([])
     const [typeCustomer, setTypeCustomer] = useState([])
-    const [pageCount,setPageCount] = useState(0)
+    const [pageCount, setPageCount] = useState(0)
 
     const findAllCustomer = async () => {
         const result = await customerService.findAll();
@@ -19,9 +20,9 @@ export function ListCustomer() {
         setTypeCustomer(res)
     }
     const fecthApi = async () => {
-        const rs = await customerService.findAll('',1)
+        const rs = await customerService.findAll( "",1)
         const pages = await customerService.getTotalPages()
-        let total = Math.ceil(pages.length/5)
+        let total = Math.ceil(pages.length / 5)
         setPageCount(total)
         setCustomer(rs)
     }
@@ -58,7 +59,7 @@ export function ListCustomer() {
 
     }
 
-    const handlePageClick= async(data)=> {
+    const handlePageClick = async (data) => {
         let currentPage = data.selected + 1
         const rs = await customerService.findAll('', currentPage)
         setCustomer(rs)
@@ -67,10 +68,46 @@ export function ListCustomer() {
     return (
         <>
             <NavAdmin/>
-
-            <h2 className="text-center mt-2 " style={{color: "black"}}>
+            <nav
+                className="navbar navbar-light "
+                style={{position: "sticky", top: 0, left: 0, right: 0}}
+            >
+                <div className="container-fluid">
+                    <div style={{display: "flex", margin: 8, position: "relative"}}>
+                        <div>
+                            <Link to="/createCustomer" className="btn btn-success"  style={{height:"6vh",fontSize:"1.2em"}}>Thêm mới khách hàng</Link>
+                        </div>
+                    </div>
+                    <Formik initialValues={{
+                        name: ''
+                    }} onSubmit={ async (values) => {
+                        const search = async () => {
+                            const res = await customerService.findAll(values.name)
+                            setCustomer(res)
+                        }
+                        search()
+                    }
+                    }
+                    >
+                    <Form className="d-flex" >
+                        <Field
+                            style={{width: "15vw"}}
+                            className="form-control me-2"
+                            type="search"
+                            name="name"
+                            placeholder="Tim kiếm"
+                            aria-label="Search"
+                        />
+                        <button className="btn btn-primary" type="submit" style={{width: "6vw",height:"6vh",fontSize:"1.2em"}}>
+                            Search
+                        </button>
+                    </Form>
+            </Formik>
+                </div>
+            </nav>
+            <h1 className="text-center  " style={{color: "black"}}>
                 Danh sách khách hàng
-            </h2>
+            </h1>
             <table className="table  table-hover text-center">
                 <thead className="table-light">
                 <tr>
@@ -96,7 +133,7 @@ export function ListCustomer() {
                         <td>{listCustomer.cmnd}</td>
                         <td>{listCustomer.phone}</td>
                         <td>{listCustomer.email}</td>
-                        <td>{typeCustomer.find(typeCustomer=>typeCustomer.id===listCustomer.typeId)?.nameType}</td>
+                        <td>{typeCustomer.find(typeCustomer => typeCustomer.id === listCustomer.typeId)?.nameType}</td>
                         <td>
                             <Link to={`/updateCustomer/${listCustomer.id}`}
 
@@ -122,19 +159,18 @@ export function ListCustomer() {
             </table>
 
             <ReactPaginate
-                previousLabel= <i className="fa-solid fa-arrow-left"/>
-                nextLabel= <i className="fa-solid fa-arrow-right"/>
-                pageCount={pageCount}
-                onPageChange={handlePageClick}
-                containerClassName="pagination justify-content-center"
-                pageClassName="page-item"
-                pageLinkClassName="page-link"
-                previousClassName="page-item"
-                previousLinkClassName="page-link"
-                nextClassName="page-item"
-                nextLinkClassName="page-link"
-                activeClassName="active"
-
+                previousLabel=<i className="fa-solid fa-arrow-left"/>
+            nextLabel= <i className="fa-solid fa-arrow-right"/>
+            pageCount={pageCount}
+            onPageChange={handlePageClick}
+            containerClassName="pagination justify-content-center"
+            pageClassName="page-item"
+            pageLinkClassName="page-link"
+            previousClassName="page-item"
+            previousLinkClassName="page-link"
+            nextClassName="page-item"
+            nextLinkClassName="page-link"
+            activeClassName="active"
             />
         </>
 

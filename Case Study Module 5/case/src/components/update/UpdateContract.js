@@ -26,11 +26,11 @@ export function UpdateContract() {
     }, [pram.id])
 
     const listCustomer = async () => {
-        const res = await customerList.findAll();
+        const res = await customerList.findAllCustomer();
         setCustomer(res)
     }
     const listService = async () => {
-        const res = await serviceList.findAll();
+        const res = await serviceList.findAllService();
         setService(res)
     }
     useEffect(() => {
@@ -44,19 +44,17 @@ export function UpdateContract() {
         <>
             <NavAdmin/>
             <Formik initialValues={{
+                id:contract ?.id,
                 numberService: contract?.numberService,
                 startDay: contract?.startDay,
                 endDay: contract?.endDay,
                 deposit: contract?.deposit,
-                totalMoney: contract?.totalMoney,
+
                 customerId: contract?.customerId,
                 serviceId: contract?.serviceId
 
             }}
                     validationSchema={Yup.object({
-                        numberService: Yup.string()
-                            .required('Không được để trống')
-                            .matches(/^MHD-\d+$/, 'Nhập đúng mã hợp đồng theo định dạng vd (MHD-0012)'),
                         startDay: Yup.date()
                             .required('Không được để trống'),
                         endDay: Yup.date()
@@ -64,12 +62,9 @@ export function UpdateContract() {
                         deposit: Yup.number()
                             .required('Không được để trống')
                             .min(100, 'Lớn hơn 100'),
-                        totalMoney: Yup.number()
-                            .required('Không được để trống')
-                            .min(0, 'Lớn hơn 0'),
                         customerId: Yup.string()
-                            .required('Không được để trống')
-                            .min(1),
+                            .required('Không được để trống'),
+
                         serviceId: Yup.string()
                             .required('Không được để trống'),
 
@@ -102,6 +97,7 @@ export function UpdateContract() {
                                     <div className="mt-4 ">
                                         <span/>
                                         <Field
+                                            type="number"
                                             name="customerId"
                                             className="form-control"
                                             as="select"
@@ -117,11 +113,12 @@ export function UpdateContract() {
                                     <div className="mt-4 ">
                                         <span/>
                                         <Field
+                                            type="number"
                                             name="serviceId"
                                             className="form-control"
                                             as="select"
-
-                                        >{serviceContract.map((list) => (
+                                        >
+                                            {serviceContract.map((list) => (
                                             <option key={list.id} value={list.id}>
                                                 {list.name}
                                             </option>
@@ -131,18 +128,8 @@ export function UpdateContract() {
                                     </div>
                                     <div className="mt-4 ">
                                         <Field
-                                            type="text"
-                                            className="form-control"
-                                            name="numberService"
-                                            placeholder="Số hợp đồng vd (MHD-0012)"
-                                        />
-                                        <ErrorMessage name="numberService" component="span" className="error-r"/>
-                                    </div>
-                                    <div className="mt-4 ">
-                                        <Field
                                             type="date"
                                             className="form-control"
-                                            id=""
                                             name="startDay"
                                             placeholder="Ngày bắt đầu"
                                         />
@@ -172,20 +159,7 @@ export function UpdateContract() {
 
                                         </div>
                                     </div>
-                                    <div className=" mt-4  ">
-                                        <div className=" form-group">
-                                            <Field
-                                                type="number"
-                                                name="totalMoney"
-                                                className="form-control"
-                                                placeholder="Tổng số tiền thanh toán"
-                                            />
-                                            <ErrorMessage name="totalMoney" component="span"
-                                                          className="error-r"/>
-
-                                        </div>
-                                    </div>
-                                    <div className="text-center m-auto">
+                                    <div className="text-center m-auto mt-4">
                                         <button type="submit" className=" btn btn-success ">
                                             <b className="text-center">THÊM MỚI HỢP ĐỒNG THUÊ</b>
                                         </button>

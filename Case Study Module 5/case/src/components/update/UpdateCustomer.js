@@ -24,6 +24,7 @@ export function UpdateCustomer() {
     useEffect(() => {
         const typeCustomer =async () => {
             const res=await customerService.findAllTypeCustomer();
+            console.log(res)
             setType(res);
         }
         typeCustomer();
@@ -49,7 +50,7 @@ export function UpdateCustomer() {
                         name: Yup.string()
                             .required('Không được để trống')
                             .matches(/^[A-Z][a-z]*(\s[A-Z][a-z]*)+$/,'Phải đúng định dạng tên, vd (Huynh Van A)'),
-                        typeId: Yup.string()
+                        typeId: Yup.number()
                             .required('Không được để trống')
                             .min(1),
                         birthday: Yup.date()
@@ -71,7 +72,7 @@ export function UpdateCustomer() {
                     onSubmit={ async (values,{setSubmitting})=>{
                     const updateCustomer = async () => {
                         setSubmitting(false)
-                        await customerService.updateCustomer({...values, typeId: +values.id});
+                        await customerService.updateCustomer({...values, typeId: +values.typeId});
                         console.log(values)
                         Swal.fire({
                             icon:"success",
@@ -111,9 +112,8 @@ export function UpdateCustomer() {
                                             className="form-control"
                                             as="select"
                                         >
-                                            <option value={0}>Chọn</option>
-                                            {typeCustomer.map((list,index) => (
-                                                <option key={index} value={list.id}>
+                                            {typeCustomer.map((list) => (
+                                                <option key={list.id} value={list.id}>
                                                     {list.nameType}
                                                 </option>
                                             ))}
@@ -150,19 +150,19 @@ export function UpdateCustomer() {
                                     <div className="row mt-4  ">
                                         <div className="col-md-6 form-group">
                                             <Field
-                                                type="text"
+                                                type="number"
                                                 name="cmnd"
                                                 className="form-control"
-                                                placeholder="Số CMND"
+                                                placeholder="Số CMND (có 9 số 0)"
                                             />
                                             <ErrorMessage name="cmnd" component="span" className="error-r"/>
                                         </div>
                                         <div className="col-md-6 form-group mt-3 mt-md-0">
                                             <Field
-                                                type="text"
+                                                type="number"
                                                 className="form-control"
                                                 name="phone"
-                                                placeholder="Số điện thoại"
+                                                placeholder="Số điện thoại(có 10 số) "
                                             />
                                             <ErrorMessage name="phone" component="span" className="error-r"/>
                                         </div>
@@ -173,7 +173,7 @@ export function UpdateCustomer() {
                                                 type="text"
                                                 name="email"
                                                 className="form-control"
-                                                placeholder="Email"
+                                                placeholder="Email (vd adc098@gmail.com)"
                                             />
                                             <ErrorMessage name="email" component="span" className="error-r"/>
                                         </div>
