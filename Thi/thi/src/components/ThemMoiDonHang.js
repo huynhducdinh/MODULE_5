@@ -18,7 +18,7 @@ export function ThemMoiDonHang() {
     const getProduct =async (id) =>{
 
         for (let i = 0; i < sanPham.length; i++) {
-            if(sanPham[index].id == id){
+            if(sanPham[i].id == id){
                 setSanPham(sanPham[i])
             }
 
