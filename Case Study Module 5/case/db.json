@@ -119,31 +119,39 @@
       "freeServiceIncluded": "1",
       "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Lagoon-Superior-twin-bed-M-1047x563.jpg",
       "id": 8
+    },
+    {
+      "typeServiceId": 2,
+      "name": "Phong Vps",
+      "acreage": 8,
+      "rentalCosts": 8,
+      "maximumNumberPeople": "8",
+      "typeRental": "Year",
+      "descriptionOtherUtilities": "8",
+      "roomStandard": "123",
+      "numberFloors": 8,
+      "poolArea": "",
+      "freeServiceIncluded": "2",
+      "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg",
+      "id": 9
+    },
+    {
+      "typeServiceId": 2,
+      "name": "Phong Vps",
+      "acreage": 123,
+      "rentalCosts": 12,
+      "maximumNumberPeople": "1",
+      "typeRental": "Month",
+      "descriptionOtherUtilities": "",
+      "roomStandard": "",
+      "numberFloors": "",
+      "poolArea": "",
+      "freeServiceIncluded": "12",
+      "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Lagoon-Superior-twin-bed-M-1047x563.jpg",
+      "id": 10
     }
   ],
   "customer": [
-    {
-      "id": 1,
-      "name": "Huynh Duc Dninh",
-      "typeId": 1,
-      "birthday": "2023-06-15",
-      "gender": 0,
-      "cmnd": 207379736,
-      "phone": "0555779990",
-      "email": "heeyeon@gmail.com",
-      "address": "Quảng Nam"
-    },
-    {
-      "id": 2,
-      "name": "Phan Thi",
-      "typeId": 2,
-      "birthday": "2023-06-08",
-      "gender": "0",
-      "cmnd": "111111111",
-      "phone": "0111111811",
-      "email": "heeyeon@gmail.com",
-      "address": "Đà ẵng"
-    },
     {
       "id": 3,
       "name": "Phan Thi",
@@ -238,7 +246,7 @@
     },
     {
       "id": 2,
-      "nameTypeService": "Room"
+      "nameType Service": "Room"
     },
     {
       "id": 3,

@@ -30,7 +30,7 @@ export function UpdateContract() {
         setCustomer(res)
     }
     const listService = async () => {
-        const res = await serviceList.findAllService();
+        const res = await serviceList.findAllServiceư();
         setService(res)
     }
     useEffect(() => {

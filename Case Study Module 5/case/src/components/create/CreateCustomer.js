@@ -67,11 +67,9 @@ export function CreateCustomer() {
                     }}>
                 <div className="container mt-5 mb-5 ">
                     <div
-                        className="row height d-flex justify-content-center align-items-center"
-                        style={{zIndex: -1}}
-                    >
+                        className="row height d-flex justify-content-center align-items-center" style={{zIndex: -1}}>
                         <div className="col-md-6">
-                            <div className="card px-5 py-4">
+                            <div className="card px-5 py-4 top" >
                                 <div style={{textAlign: "center"}}>
                                     <h2 style={{color: "black"}}>Thêm mới danh sách khách hàng</h2>
                                 </div>

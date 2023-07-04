@@ -67,22 +67,22 @@ export function CreateService() {
                                     return Yup.string().required('Không được để trống')
                                         .isValidSync(value)
                                 }
-                                return true
+                                return true;
                             }),
                         numberFloors: Yup.number()
-                            .test('OKok', 'Số tầng > 0', function (value) {
+                            .test('', '', function (value) {
                                 if (type !== '2') {
                                     return Yup.number().required('Không được để trống')
-                                        .min(1, 'Lớn hơn 0')
+                                        .min(1, 'Số tầng > 0')
                                         .isValidSync(value);
                                 }
                                 return true;
                             }),
                         poolArea: Yup.number()
-                            .test('OKok', 'Diện tích hồ bơi > 0', function (value) {
+                            .test('', '', function (value) {
                                 if (type === '1') {
                                     return Yup.number().required('Không được để trống')
-                                        .min(1, 'Lớn hơn 0')
+                                        .min(1, 'Diện tích hồ bơi > 0')
                                         .isValidSync(value);
                                 }
                                 return true;
@@ -224,10 +224,10 @@ export function CreateService() {
                                                     className="form-control"
                                                     placeholder="Tiêu chuẩn phòng(Villa,House)"
                                                 />
-                                                <ErrorMessage name="roomStandard" component="span" className="error-r"/>
+
                                             </div>
                                             : ''
-                                        }
+                                        }<ErrorMessage name="roomStandard" component="span" className="error-r"/>
                                         {type !== '2' ?
                                             <div className="col-md-6 form-group mt-3 mt-md-0">
                                                 <Field
@@ -236,11 +236,11 @@ export function CreateService() {
                                                     name="numberFloors"
                                                     placeholder="Số tầng(Villa,House)"
                                                 />
-                                                <ErrorMessage name="numberFloors" component="span" className="error-r"/>
+
 
                                             </div>
                                             : ''
-                                        }
+                                        } <ErrorMessage name="numberFloors" component="span" className="error-r"/>
                                     </div>
                                     <div className="row mt-2">
                                         {type === '1' ?
@@ -251,10 +251,10 @@ export function CreateService() {
                                                     className="form-control"
                                                     placeholder="Diện tích hồ bơi"
                                                 />
-                                                <ErrorMessage name="poolArea" component="span" className="error-r"/>
+
                                             </div>
                                             : ''
-                                        }
+                                        } <ErrorMessage name="poolArea" component="span" className="error-r"/>
                                         {type === '2' ?
                                             <div className="col-md-12 form-group mt-2 mt-md-0">
                                                 <Field
@@ -263,11 +263,11 @@ export function CreateService() {
                                                     name="freeServiceIncluded"
                                                     placeholder="Dịch vụ miễn phí đi kèm"
                                                 />
-                                                <ErrorMessage name="freeServiceIncluded" component="span"
-                                                              className="error-r"/>
+
                                             </div>
                                             : ''
-                                        }
+                                        }<ErrorMessage name="freeServiceIncluded" component="span"
+                                                       className="error-r"/>
                                     </div>
                                     <div className=" mt-2 inputs">
                                         <Field

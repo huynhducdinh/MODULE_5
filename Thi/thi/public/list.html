@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div
+        class="row height d-flex justify-content-center align-items-center"
+        style={{zIndex: -1}}
+>
+  <div class="col-md-6">
+    <div class="card px-5 py-4" style={{marginTop: "20%"}}>
+    <div style={{textAlign: "center"}}>
+    <h2 style={{color: "black"}}>Thêm mới</h2>
+  </div>
+<form>
+  <div class="mt-5 ">
+    <input
+            type="text"
+            class="form-control"
+            name="name"
+            placeholder="Tên"
+    />
+
+  </div>
+  <div class="mt-1 ">
+    <input
+            type="number"
+            class="form-control"
+            name="price"
+            placeholder="GIÁ"
+    />
+  </div>
+  <div class="mt-4 ">
+    <input
+            name="typeId"
+            type="number"
+            class="form-control"
+            data-error="Please specify your need."
+            as="select"
+    >
+      <option value="-1">--Chọn Loại--</option>
+
+    </input>
+  </div>
+  <div class="text-center m-auto mt-3">
+    <button type="submit" class=" btn btn-success ">
+      <b class="text-center">...</b>
+    </button>
+  </div>
+</form>
+<!--list-->
+
+<nav class="navbar navbar-light bg-light " style={{position: "sticky", top: 0, left: 0, right: 0}}>
+<div class="container-fluid">
+  <div style={{display: "flex", margin: "0%", position: "relative"}}>
+  <div>
+    <a href="" class="btn btn-outline-success"
+          style={{height: "6vh", fontSize: "1.2em"}}> Thêm mới</Link>
+  </div>
+</div>
+<h1 class="text-center">...</h1>
+<input class="d-flex">
+  <input>
+          style={{width: "15vw"}}
+  className="form-control me-2"
+  type="search"
+  name="name"
+  placeholder="Tim kiếm"
+  aria-label="Search"
+  />
+  <input>
+          style={{width: "15vw"}}
+  className="form-control me-2"
+  name="typeId"
+  as="select"
+  >
+  <option value={""}>--Chon loai--</option>
+
+  </Field>
+  <button class="btn btn-outline-primary" type="submit"
+          style={{width: "4vw", height: "6vh", fontSize: "1.2em"}}>
+  <i class="fa-solid fa-magnifying-glass r"></i>
+  </button>
+</input>
+
+</div>
+</nav>
+<table class="table table-hover table-striped"
+       style={{marginTop: "3%", width: "80%", marginLeft: "10%", border: "1px solid black"}}
+>
+<thead>
+<tr>
+  <th class="text-center" style={{fontSize: "1.2em"}}>Id</th>
+
+</tr>
+</thead>
+<tbody>
+{product.map((list, index) => (
+<tr key={index}>
+  <td class="text-center"></td>
+
+  <td class="text-center" colSpan="">
+    <a class="btn btn-outline-danger"
+       style=
+               {{margin: "1%"}}
+    ><i class="fa-solid fa-trash"></i></a>
+    <a href=""  class="btn btn-outline-warning"
+          style={{margin: "1%"}}
+    ><i class="fa-solid fa-pen-to-square"></i></Link>
+  </td>
+</tr>
+))}
+
+</tbody>
+</table>
+</body>
+</html>

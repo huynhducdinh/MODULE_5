@@ -1,0 +1,30 @@
+{
+  "product": [
+    {
+      "id": 1,
+      "name": "Ok Ok",
+      "price": 10,
+      "typeId": 1
+    },
+    {
+      "id": 2,
+      "name": "Thịt",
+      "price": 12311111111,
+      "typeId": 2
+    }
+  ],
+  "typeProduct": [
+    {
+      "typeId": 1,
+      "nameType": "Rau cu qua"
+    },
+    {
+      "typeId": 2,
+      "nameType": "Thịt Tươi sống"
+    },
+    {
+      "typeId": 3,
+      "nameType": "Đồ đông lạnh"
+    }
+  ]
+}

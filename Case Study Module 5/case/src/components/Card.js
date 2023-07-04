@@ -11,7 +11,7 @@ export function Card() {
         findAllCard()
     },[])
     const findAllCard = async () => {
-        const result = await service.findAll();
+        const result = await service.findAllService();
         setCard(result)
     }
     const deleteService =async (id) => {

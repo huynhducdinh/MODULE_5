@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<Form>
+  <div class="mt-5 ">
+    <Field
+            type="text"
+            class="form-control"
+            name="name"
+            placeholder="Tên"
+    />
+
+  </div>
+  <div class="mt-1 ">
+    <Field
+            type="number"
+            class="form-control"
+            name="price"
+            placeholder="GIÁ"
+    />
+  </div>
+  <div class="mt-4 ">
+    <Field
+            name="typeId"
+            type="number"
+            class="form-control"
+            data-error="Please specify your need."
+            as="select"
+    >
+      <option value="-1">--Chọn Loại--</option>
+
+    </Field>
+  </div>
+  <div class="text-center m-auto mt-3">
+    <button type="submit" class=" btn btn-success ">
+      <b class="text-center">...</b>
+    </button>
+  </div>
+</Form>
+</body>
+</html>
