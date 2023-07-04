@@ -7,6 +7,7 @@ import * as Yup from 'yup'
 
 
 export function ThemMoiDonHang() {
+    const [product, setProduct] = useState([])
     const [sanPham, setSanPham] = useState([])
     const navigate = useNavigate()
 
@@ -17,9 +18,9 @@ export function ThemMoiDonHang() {
     }
     const getProduct =async (id) =>{
 
-        for (let i = 0; i < sanPham.length; i++) {
-            if(sanPham[i].id == id){
-                setSanPham(sanPham[i])
+        for (let i = 0; i < product.length; i++) {
+            if(product[i].id == id){
+                setProduct(product[i])
             }
 
         }
@@ -44,13 +45,13 @@ export function ThemMoiDonHang() {
                             code_order: '',
                             purchase_date: '',
                             quantity: '',
-                            sanPham: '',
+                            product: '',
                             total: ''
                         }}
                                 validationSchema={Yup.object({
                                     code_order: Yup.number()
                                         .required('Không được để trống'),
-                                    sanPham: Yup.number()
+                                    product: Yup.number()
                                         .required('Không được để trống'),
                                     purchase_date: Yup.date().max(new Date(), 'Không được chọn ngày tương lai')
                                         .required('Không được để trống'),
@@ -63,7 +64,7 @@ export function ThemMoiDonHang() {
                                     const save = async () => {
                                         await donHangService.saveDonHang({
                                             ...values,
-                                            sanPham: sanPham,
+                                            product: product,
                                             code_order: values?.code_order,
                                             purchase_date: values?.purchase_date,
                                             quantity: values?.quantity,
@@ -92,7 +93,7 @@ export function ThemMoiDonHang() {
                                 </div>
                                 <div className="mt-4 ">
                                     <Field
-                                        name="sanPham"
+                                        name="product"
                                         type="number"
                                         className="form-control"
                                         data-error="Please specify your need."
@@ -106,7 +107,7 @@ export function ThemMoiDonHang() {
                                                     value={list.id}>{list.nameProduct}</option>
                                         ))}
                                     </Field>
-                                    <ErrorMessage name="sanPham" component="span" className="error"/>
+                                    <ErrorMessage name="product" component="span" className="error"/>
                                 </div>
 
                                 <div className="mt-4 ">
